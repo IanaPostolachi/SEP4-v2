@@ -8,11 +8,11 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jakubduchon</groupId>
-	<artifactId>webapi-demo</artifactId>
+	<groupId>main</groupId>
+	<artifactId>SEP4-v2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>webapi-demo</name>
-	<description>Demo project for the Cloud Workshop</description>
+	<name>SEP4-v2</name>
+	<description>sep4 remade from the workshop</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -43,7 +43,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>cloud-workshop-example</finalName>
+		<finalName>sep4-data</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
