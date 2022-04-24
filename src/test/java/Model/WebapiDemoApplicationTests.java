@@ -1,4 +1,4 @@
-package com.jakubduchon.webapidemo;
+package Model;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

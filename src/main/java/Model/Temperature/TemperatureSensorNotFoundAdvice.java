@@ -1,4 +1,4 @@
-package com.jakubduchon.webapidemo.employee;
+package Model.Temperature;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class EmployeeNotFoundAdvice {
+public class TemperatureSensorNotFoundAdvice
+{
     @ResponseBody
-    @ExceptionHandler(EmployeeNotFoundException.class)
+    @ExceptionHandler(TemperatureSensorNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String emploeeNotFoundHandler(EmployeeNotFoundException ex) {
+    String emploeeNotFoundHandler(TemperatureSensorNotFoundException ex) {
         return ex.getMessage();
     }
 }
