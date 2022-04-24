@@ -1,7 +1,5 @@
-package Model;
+package sep4package.Model;
 
-import Model.Temperature.*;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

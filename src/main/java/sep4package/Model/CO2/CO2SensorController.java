@@ -1,6 +1,5 @@
-package Model.CO2;
+package sep4package.Model.CO2;
 
-import Model.Temperature.TemperatureSensor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

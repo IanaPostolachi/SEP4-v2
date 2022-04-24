@@ -1,4 +1,4 @@
-package Model.Temperature;
+package sep4package.Model.Temperature;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;

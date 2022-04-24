@@ -1,4 +1,4 @@
-package Model.Temperature;
+package sep4package.Model.Temperature;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,10 +1,12 @@
-import Model.CO2.CO2Sensor;
-import Model.Humidity.HumiditySensor;
-import Model.Humidity.HumiditySensorRepository;
-import Model.Sensors;
-import Model.Temperature.TemperatureSensor;
-import Model.Temperature.TemperatureSensorRepository;
-import Model.CO2.CO2SensorRepository;
+package sep4package;
+
+import sep4package.Model.CO2.CO2Sensor;
+import sep4package.Model.Humidity.HumiditySensor;
+import sep4package.Model.Humidity.HumiditySensorRepository;
+import sep4package.Model.Sensors;
+import sep4package.Model.Temperature.TemperatureSensor;
+import sep4package.Model.Temperature.TemperatureSensorRepository;
+import sep4package.Model.CO2.CO2SensorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

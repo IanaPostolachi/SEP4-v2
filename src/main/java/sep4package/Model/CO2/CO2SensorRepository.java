@@ -1,4 +1,4 @@
-package Model.CO2;
+package sep4package.Model.CO2;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,19 +1,14 @@
-package Model.CO2;
+package sep4package.Model.Humidity;
 
-import Model.Temperature.TemperatureSensor;
-import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
-@Entity(name = "CO2")
-@Table(name = "co2")
-public class CO2Sensor
+@Entity(name = "Humidity")
+@Table(name = "humidity")
+public class HumiditySensor
 {
-
     @Id
     @Column(updatable = false)
     @GeneratedValue(generator = "sequence-generator")
@@ -21,43 +16,44 @@ public class CO2Sensor
         name = "sequence-generator",
         strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
         parameters = {
-            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "co2_sequence"),
+            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "humidity_sequence"),
             @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
         }
     )
-    private Long CO2Id;
+    private Long HumidityId;
     @Column
-    private int CO2Level;
+    private double Humidity;
     @Column
     private Timestamp Time;
 
-    public CO2Sensor(int CO2Level, Timestamp timestamp) {
-        this.CO2Level = CO2Level;
-        this.Time = timestamp;
-    }
-
-    public CO2Sensor() {
-    }
-
-    public Long getCO2Id()
+    public HumiditySensor(double Humidity,Timestamp Time)
     {
-        return CO2Id;
+        this.Humidity = Humidity;
+        this.Time = Time;
     }
 
-    public void setCO2Id(Long CO2Id)
-    {
-        this.CO2Id = CO2Id;
+    public HumiditySensor() {
     }
 
-    public int getCO2Level()
+    public Long getHumidityId()
     {
-        return CO2Level;
+        return HumidityId;
     }
 
-    public void setCO2Level(int CO2Level)
+    public void setHumidityId(Long humidityId)
     {
-        this.CO2Level = CO2Level;
+        HumidityId = humidityId;
+    }
+
+    public double getHumidity()
+    {
+        return Humidity;
+    }
+
+    public void setHumidity(double humidity)
+    {
+        Humidity = humidity;
     }
 
     public Timestamp getTime()

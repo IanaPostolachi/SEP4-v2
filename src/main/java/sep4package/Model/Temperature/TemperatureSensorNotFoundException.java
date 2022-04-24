@@ -1,4 +1,4 @@
-package Model.Temperature;
+package sep4package.Model.Temperature;
 
 class TemperatureSensorNotFoundException extends RuntimeException {
     TemperatureSensorNotFoundException(Long id) {

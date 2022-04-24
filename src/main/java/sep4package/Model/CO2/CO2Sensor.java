@@ -1,14 +1,15 @@
-package Model.Humidity;
+package sep4package.Model.CO2;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity(name = "Humidity")
-@Table(name = "humidity")
-public class HumiditySensor
+@Entity(name = "CO2")
+@Table(name = "co2")
+public class CO2Sensor
 {
+
     @Id
     @Column(updatable = false)
     @GeneratedValue(generator = "sequence-generator")
@@ -16,44 +17,43 @@ public class HumiditySensor
         name = "sequence-generator",
         strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
         parameters = {
-            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "humidity_sequence"),
+            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "co2_sequence"),
             @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
         }
     )
-    private Long HumidityId;
+    private Long CO2Id;
     @Column
-    private double Humidity;
+    private int CO2Level;
     @Column
     private Timestamp Time;
 
-    public HumiditySensor(double Humidity,Timestamp Time)
-    {
-        this.Humidity = Humidity;
-        this.Time = Time;
+    public CO2Sensor(int CO2Level, Timestamp timestamp) {
+        this.CO2Level = CO2Level;
+        this.Time = timestamp;
     }
 
-    public HumiditySensor() {
+    public CO2Sensor() {
     }
 
-    public Long getHumidityId()
+    public Long getCO2Id()
     {
-        return HumidityId;
+        return CO2Id;
     }
 
-    public void setHumidityId(Long humidityId)
+    public void setCO2Id(Long CO2Id)
     {
-        HumidityId = humidityId;
+        this.CO2Id = CO2Id;
     }
 
-    public double getHumidity()
+    public int getCO2Level()
     {
-        return Humidity;
+        return CO2Level;
     }
 
-    public void setHumidity(double humidity)
+    public void setCO2Level(int CO2Level)
     {
-        Humidity = humidity;
+        this.CO2Level = CO2Level;
     }
 
     public Timestamp getTime()

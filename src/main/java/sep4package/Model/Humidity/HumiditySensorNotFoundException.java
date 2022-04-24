@@ -1,4 +1,4 @@
-package Model.Humidity;
+package sep4package.Model.Humidity;
 
 class HumiditySensorNotFoundException extends RuntimeException {
     HumiditySensorNotFoundException(Long id) {

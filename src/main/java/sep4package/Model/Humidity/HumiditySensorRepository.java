@@ -1,4 +1,4 @@
-package Model.Humidity;
+package sep4package.Model.Humidity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

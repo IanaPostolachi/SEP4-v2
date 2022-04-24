@@ -1,4 +1,4 @@
-package Model.CO2;
+package sep4package.Model.CO2;
 
 class CO2SensorNotFoundException extends RuntimeException {
     CO2SensorNotFoundException(Long id) {
