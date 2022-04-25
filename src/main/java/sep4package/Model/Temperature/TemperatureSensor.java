@@ -61,7 +61,7 @@ public class TemperatureSensor
 
     public Timestamp getTime()
     {
-        return Time;
+        return new Timestamp(System.currentTimeMillis());
     }
 
     public void setTime(Timestamp time)
