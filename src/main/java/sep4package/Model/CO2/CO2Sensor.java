@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity(name = "CO2")
 @Table(name = "co2")
@@ -58,7 +59,7 @@ public class CO2Sensor
 
     public Timestamp getTime()
     {
-        return Time;
+        return Time.valueOf("yyyy-mm-dd hh:mm:ss");
     }
 
     public void setTime(Timestamp time)
