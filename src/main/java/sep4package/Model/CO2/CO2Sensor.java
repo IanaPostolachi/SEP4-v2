@@ -59,7 +59,7 @@ public class CO2Sensor
 
     public Timestamp getTime()
     {
-        return Time.valueOf("yyyy-mm-dd hh:mm:ss");
+        return new Timestamp(System.currentTimeMillis());
     }
 
     public void setTime(Timestamp time)
