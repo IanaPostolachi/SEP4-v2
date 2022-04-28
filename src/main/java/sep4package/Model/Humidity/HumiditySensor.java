@@ -10,7 +10,9 @@ import java.sql.Timestamp;
 public class HumiditySensor
 {
     @Id
-    @Column(updatable = false)
+
+    @OneToOne(mappedBy = "HumidityId")
+
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
         name = "sequence-generator",
@@ -21,13 +23,13 @@ public class HumiditySensor
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
         }
     )
-    private Long HumidityId;
+    private java.lang.Long HumidityId;
     @Column
     private double Humidity;
     @Column
-    private Timestamp Time;
+    private  Timestamp Time;
 
-    public HumiditySensor(double Humidity,Timestamp Time)
+    public HumiditySensor(double Humidity , Timestamp Time)
     {
         this.Humidity = Humidity;
         this.Time = Time;
@@ -36,12 +38,12 @@ public class HumiditySensor
     public HumiditySensor() {
     }
 
-    public Long getHumidityId()
+    public java.lang.Long getHumidityId()
     {
         return HumidityId;
     }
 
-    public void setHumidityId(Long humidityId)
+    public void setHumidityId(java.lang.Long humidityId)
     {
         HumidityId = humidityId;
     }
@@ -56,13 +58,13 @@ public class HumiditySensor
         Humidity = humidity;
     }
 
-    public Timestamp getTime()
-    {
+    public Timestamp getTime() {
         return new Timestamp(System.currentTimeMillis());
     }
 
-    public void setTime(Timestamp time)
-    {
+    public void setTime(Timestamp time) {
         Time = time;
     }
+
+
 }

@@ -12,7 +12,7 @@ public class CO2Sensor
 {
 
     @Id
-    @Column(updatable = false)
+    @OneToOne(mappedBy = "CO2Id")
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
         name = "sequence-generator",
@@ -29,20 +29,21 @@ public class CO2Sensor
     @Column
     private Timestamp Time;
 
-    public CO2Sensor(int CO2Level, Timestamp timestamp) {
+
+    public CO2Sensor(int CO2Level , Timestamp Time) {
         this.CO2Level = CO2Level;
-        this.Time = timestamp;
+        this.Time = Time;
     }
 
     public CO2Sensor() {
     }
 
-    public Long getCO2Id()
+    public java.lang.Long getCO2Id()
     {
         return CO2Id;
     }
 
-    public void setCO2Id(Long CO2Id)
+    public void setCO2Id(java.lang.Long CO2Id)
     {
         this.CO2Id = CO2Id;
     }
@@ -57,13 +58,12 @@ public class CO2Sensor
         this.CO2Level = CO2Level;
     }
 
-    public Timestamp getTime()
-    {
+    public Timestamp getTime() {
         return new Timestamp(System.currentTimeMillis());
     }
 
-    public void setTime(Timestamp time)
-    {
+    public void setTime(Timestamp time) {
         Time = time;
     }
+
 }
