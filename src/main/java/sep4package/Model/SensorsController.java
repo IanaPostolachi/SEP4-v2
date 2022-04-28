@@ -16,6 +16,7 @@ public class SensorsController
 
     @GetMapping("/sensors")
     List<Sensors> all() {
+
         return repository.findAll();
     }
 
