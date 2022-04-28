@@ -25,10 +25,7 @@ public class LoadDatabase {
             TemperatureSensor temperatureSensor = new TemperatureSensor(22, new Timestamp(2022,12,11,12,45,30,11));
             HumiditySensor humiditySensor = new HumiditySensor( 60 , new Timestamp(2022,12,11,12,45,30,11));
             CO2Sensor co2Sensor = new CO2Sensor( 400 , new Timestamp(2022,12,11,12,45,30,11));
-            Sensors sensors = new Sensors(1, temperatureSensor , humiditySensor , co2Sensor, new Timestamp(2022,12,11,12,45,30,11));
-            sensors.setHumidityId(humiditySensor);
-            sensors.setCO2Id(co2Sensor);
-            sensors.setTemperatureId(temperatureSensor);
+            Sensors sensors = new Sensors();
             log.info("Preloading " + temperatureRepo.save(temperatureSensor));
             log.info("Preloading " + co2Repo.save(co2Sensor));
             log.info("Preloading " + humidityRepo.save(humiditySensor));

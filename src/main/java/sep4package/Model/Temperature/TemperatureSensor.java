@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 public class TemperatureSensor
 {
     @Id
-    @OneToOne(mappedBy = "TemperatureId")
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
         name = "sequence-generator",
@@ -23,7 +22,7 @@ public class TemperatureSensor
         }
     )
    // @JsonIgnoreProperties("TemperatureId")
-    private java.lang.Long TemperatureId;
+    private Long TemperatureId;
     @Column
     private double Temperature;
 

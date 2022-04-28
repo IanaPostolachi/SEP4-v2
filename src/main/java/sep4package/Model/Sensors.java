@@ -20,17 +20,17 @@ public class Sensors {
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")})
     private int SensorId;
 
-    @OneToOne
-    @JoinTable(name = "TemperatureId")
-    private TemperatureSensor TemperatureId;
+   // @OneToOne
+    //@JoinTable(name = "TemperatureId")
+    private Long TemperatureId;
 
-    @OneToOne
-    @JoinColumn(name = "HumidityId")
-    private HumiditySensor HumidityId;
+   // @OneToOne
+    //@JoinColumn(name = "HumidityId")
+    private Long HumidityId;
 
-    @OneToOne
-    @JoinColumn(name = "CO2Id")
-    private CO2Sensor CO2Id;
+   // @OneToOne
+    //@JoinColumn(name = "CO2Id")
+    private Long CO2Id;
 
     @Column
     private boolean IsLightOn;
@@ -40,7 +40,7 @@ public class Sensors {
     @Column
     private Timestamp Time;
 
-    public Sensors(int sensorId, TemperatureSensor temperatureId, HumiditySensor humidityId, CO2Sensor CO2Id, Timestamp time) {
+    public Sensors(int sensorId, Long temperatureId, Long humidityId, Long CO2Id, Timestamp time) {
         SensorId = sensorId;
         TemperatureId = temperatureId;
         HumidityId = humidityId;
@@ -61,27 +61,27 @@ public class Sensors {
         SensorId = sensorId;
     }
 
-    public TemperatureSensor getTemperatureId() {
+    public Long getTemperatureId() {
         return TemperatureId;
     }
 
-    public void setTemperatureId(TemperatureSensor temperatureId) {
+    public void setTemperatureId(Long temperatureId) {
         TemperatureId = temperatureId;
     }
 
-    public HumiditySensor getHumidityId() {
+    public Long getHumidityId() {
         return HumidityId;
     }
 
-    public void setHumidityId(HumiditySensor humidityId) {
+    public void setHumidityId(Long humidityId) {
         HumidityId = humidityId;
     }
 
-    public CO2Sensor getCO2Id() {
+    public Long getCO2Id() {
         return CO2Id;
     }
 
-    public void setCO2Id(CO2Sensor CO2Id) {
+    public void setCO2Id(Long CO2Id) {
         this.CO2Id = CO2Id;
     }
 

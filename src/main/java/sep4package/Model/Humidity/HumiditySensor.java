@@ -10,9 +10,6 @@ import java.sql.Timestamp;
 public class HumiditySensor
 {
     @Id
-
-    @OneToOne(mappedBy = "HumidityId")
-
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
         name = "sequence-generator",

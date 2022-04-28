@@ -12,7 +12,6 @@ public class CO2Sensor
 {
 
     @Id
-    @OneToOne(mappedBy = "CO2Id")
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
         name = "sequence-generator",
