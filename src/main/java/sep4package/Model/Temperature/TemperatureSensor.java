@@ -30,7 +30,7 @@ public class TemperatureSensor
     private Timestamp Time;
 
 
-    TemperatureSensor() {
+  public  TemperatureSensor() {
     }
 
     public TemperatureSensor(double Temperature,Timestamp Time)
