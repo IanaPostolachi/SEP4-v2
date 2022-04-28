@@ -19,16 +19,19 @@ public class TemperatureSensorController
         return repository.findAll();
     }
 
-    @PostMapping("/temperature") TemperatureSensor newTemperature(@RequestBody TemperatureSensor newTemperature) {
+    @PostMapping("/temperature")
+    TemperatureSensor newTemperature(@RequestBody TemperatureSensor newTemperature) {
         return repository.save(newTemperature);
     }
 
-    @GetMapping("/temperature/{id}") TemperatureSensor one(@PathVariable Long id) {
+    @GetMapping("/temperature/{id}")
+    TemperatureSensor one(@PathVariable java.lang.Long id) {
         return repository.findById(id).orElseThrow(()
         -> new TemperatureSensorNotFoundException(id));
     }
 
-    @PutMapping("/temperatures/{id}") TemperatureSensor updateTemperature(@RequestBody TemperatureSensor newTemperature, @PathVariable Long id) {
+    @PutMapping("/temperatures/{id}")
+    TemperatureSensor updateTemperature(@RequestBody TemperatureSensor newTemperature, @PathVariable java.lang.Long id) {
         return repository.findById(id)
                 .map(temperature -> {
                     temperature.setTemperature(newTemperature.getTemperature());
@@ -41,7 +44,7 @@ public class TemperatureSensorController
     }
 
     @DeleteMapping("temperatures/{id}")
-    void deleteTemperature(@PathVariable Long id) {
+    void deleteTemperature(@PathVariable java.lang.Long id) {
         repository.deleteById(id);
     }
 }

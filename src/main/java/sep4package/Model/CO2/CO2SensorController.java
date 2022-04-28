@@ -20,7 +20,8 @@ public class CO2SensorController
         return repository.findAll();
     }
 
-    @GetMapping("/co2Sensor/{id}") CO2Sensor one(@PathVariable Long id) {
+    @GetMapping("/co2Sensor/{id}")
+    CO2Sensor one(@PathVariable java.lang.Long id) {
         return repository.findById(id).orElseThrow(
                 () -> new CO2SensorNotFoundException(id)
         );
@@ -33,7 +34,8 @@ public class CO2SensorController
 //        return repository.save(project);
 //    }
 
-    @PutMapping("/co2Sensor/{id}") CO2Sensor updateCO2Level(@RequestBody CO2Sensor newCO2Sensor, @PathVariable Long id) {
+    @PutMapping("/co2Sensor/{id}")
+    CO2Sensor updateCO2Level(@RequestBody CO2Sensor newCO2Sensor, @PathVariable java.lang.Long id) {
         return repository.findById(id)
                 .map(co2Sensor -> {
                     co2Sensor.setCO2Level(newCO2Sensor.getCO2Level());
@@ -46,12 +48,13 @@ public class CO2SensorController
                 });
     }
 
-    @PostMapping("/co2Sensor") CO2Sensor newCO2Sensor(@RequestBody CO2Sensor newCO2Sensor) {
+    @PostMapping("/co2Sensor")
+    CO2Sensor newCO2Sensor(@RequestBody CO2Sensor newCO2Sensor) {
         return repository.save(newCO2Sensor);
     }
 
     @DeleteMapping("/co2Sensors/{id}")
-    void deleteSO2Sensor(@PathVariable Long id) {
+    void deleteSO2Sensor(@PathVariable java.lang.Long id) {
         repository.deleteById(id);
     }
 }

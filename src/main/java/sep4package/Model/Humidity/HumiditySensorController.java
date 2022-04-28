@@ -20,7 +20,8 @@ public class HumiditySensorController
         return repository.findAll();
     }
 
-    @GetMapping("/humiditySensor/{id}") HumiditySensor one(@PathVariable Long id) {
+    @GetMapping("/humiditySensor/{id}")
+    HumiditySensor one(@PathVariable java.lang.Long id) {
         return repository.findById(id).orElseThrow(
                 () -> new HumiditySensorNotFoundException(id)
         );
@@ -33,7 +34,8 @@ public class HumiditySensorController
 //        return repository.save(project);
 //    }
 
-    @PutMapping("/humiditySensor/{id}") HumiditySensor updateHumidityLevel(@RequestBody HumiditySensor newHumiditySensor, @PathVariable Long id) {
+    @PutMapping("/humiditySensor/{id}")
+    HumiditySensor updateHumidityLevel(@RequestBody HumiditySensor newHumiditySensor, @PathVariable java.lang.Long id) {
         return repository.findById(id)
                 .map(co2Sensor -> {
                     co2Sensor.setHumidity(newHumiditySensor.getHumidity());
@@ -46,12 +48,13 @@ public class HumiditySensorController
                 });
     }
 
-    @PostMapping("/humiditySensor") HumiditySensor newHumiditySensor(@RequestBody HumiditySensor newHumiditySensor) {
+    @PostMapping("/humiditySensor")
+    HumiditySensor newHumiditySensor(@RequestBody HumiditySensor newHumiditySensor) {
         return repository.save(newHumiditySensor);
     }
 
     @DeleteMapping("/humiditySensors/{id}")
-    void deleteHumiditySensor(@PathVariable Long id) {
+    void deleteHumiditySensor(@PathVariable java.lang.Long id) {
         repository.deleteById(id);
     }
 }

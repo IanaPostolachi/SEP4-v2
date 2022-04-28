@@ -1,97 +1,108 @@
 package sep4package.Model;
 
 import org.hibernate.annotations.GenericGenerator;
+import sep4package.Model.CO2.CO2Sensor;
+import sep4package.Model.Humidity.HumiditySensor;
+import sep4package.Model.Temperature.TemperatureSensor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity(name = "Sensors") @Table(name = "sensors_data") public class Sensors
-{
-  @Id @Column(updatable = false) @GeneratedValue(generator = "sequence-generator") @GenericGenerator(name = "sequence-generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
-      @org.hibernate.annotations.Parameter(name = "sequence_name", value = "sensors_sequence"),
-      @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
-      @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")}) private int SensorId;
-  @Column
-//  @JsonIgnoreProperties("TemperatureId")
-//  @OneToOne(mappedBy = "TemperatureId")
-  private Long TemperatureId;
-  @Column
-  //  @OneToOne(mappedBy = "HumidityId")
-  private Long HumidityId;
-  @Column
-  //  @OneToOne(mappedBy = "CO2Id")
-  private Long CO2Id;
-  @Column private boolean IsLightOn;
-  @Column private boolean IsWindowOpen;
-  @Column private Timestamp Time;
+@Entity(name = "Sensors")
+@Table(name = "sensors_data")
+public class Sensors {
+    @Id
+    @Column(updatable = false)
+    @GeneratedValue(generator = "sequence-generator")
+    @GenericGenerator(name = "sequence-generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
+            @org.hibernate.annotations.Parameter(name = "sequence_name", value = "sensors_sequence"),
+            @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
+            @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")})
+    private int SensorId;
 
-  public int getSensorId()
-  {
-    return SensorId;
-  }
+    @OneToOne
+    @JoinTable(name = "TemperatureId")
+    private TemperatureSensor TemperatureId;
 
-  public void setSensorId(int sensorId)
-  {
-    SensorId = sensorId;
-  }
+    @OneToOne
+    @JoinColumn(name = "HumidityId")
+    private HumiditySensor HumidityId;
 
-  public Long getTemperatureId()
-  {
-    return TemperatureId;
-  }
+    @OneToOne
+    @JoinColumn(name = "CO2Id")
+    private CO2Sensor CO2Id;
 
-  public void setTemperatureId(Long temperatureId)
-  {
-    TemperatureId = temperatureId;
-  }
+    @Column
+    private boolean IsLightOn;
+    @Column
+    private boolean IsWindowOpen;
 
-  public Long getHumidityId()
-  {
-    return HumidityId;
-  }
+    @Column
+    private Timestamp Time;
 
-  public void setHumidityId(Long humidityId)
-  {
-    HumidityId = humidityId;
-  }
+    public Sensors(int sensorId, TemperatureSensor temperatureId, HumiditySensor humidityId, CO2Sensor CO2Id, Timestamp time) {
+        SensorId = sensorId;
+        TemperatureId = temperatureId;
+        HumidityId = humidityId;
+        this.CO2Id = CO2Id;
+        IsLightOn = false;
+        IsWindowOpen = false;
+        Time = time;
+    }
 
-  public Long getCO2Id()
-  {
-    return CO2Id;
-  }
+    public int getSensorId() {
+        return SensorId;
+    }
 
-  public void setCO2Id(Long CO2Id)
-  {
-    this.CO2Id = CO2Id;
-  }
+    public void setSensorId(int sensorId) {
+        SensorId = sensorId;
+    }
 
-  public boolean isLightOn()
-  {
-    return IsLightOn;
-  }
+    public TemperatureSensor getTemperatureId() {
+        return TemperatureId;
+    }
 
-  public void setLightOn(boolean lightOn)
-  {
-    IsLightOn = lightOn;
-  }
+    public void setTemperatureId(TemperatureSensor temperatureId) {
+        TemperatureId = temperatureId;
+    }
 
-  public boolean isWindowOpen()
-  {
-    return IsWindowOpen;
-  }
+    public HumiditySensor getHumidityId() {
+        return HumidityId;
+    }
 
-  public void setWindowOpen(boolean windowOpen)
-  {
-    IsWindowOpen = windowOpen;
-  }
+    public void setHumidityId(HumiditySensor humidityId) {
+        HumidityId = humidityId;
+    }
 
-  public Timestamp getTime()
-  {
-    return new Timestamp(System.currentTimeMillis());
-  }
+    public CO2Sensor getCO2Id() {
+        return CO2Id;
+    }
 
-  public void setTime(Timestamp time)
-  {
-    Time = time;
-  }
+    public void setCO2Id(CO2Sensor CO2Id) {
+        this.CO2Id = CO2Id;
+    }
+
+    public boolean isLightOn() {
+        return IsLightOn;
+    }
+
+    public void setLightOn(boolean lightOn) {
+        IsLightOn = lightOn;
+    }
+
+    public boolean isWindowOpen() {
+        return IsWindowOpen;
+    }
+
+    public void setWindowOpen(boolean windowOpen) {
+        IsWindowOpen = windowOpen;
+    }
+
+    public Timestamp getTime() {
+        return new Timestamp(System.currentTimeMillis());
+    }
+
+    public void setTime(Timestamp time) {
+        Time = time;
+    }
 }

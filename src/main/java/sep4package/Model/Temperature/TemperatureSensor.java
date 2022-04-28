@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class TemperatureSensor
 {
     @Id
-    @Column(updatable = false)
+    @OneToOne(mappedBy = "TemperatureId")
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
         name = "sequence-generator",
@@ -22,29 +22,29 @@ public class TemperatureSensor
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
         }
     )
-    @JsonIgnoreProperties("TemperatureId")
-    private Long TemperatureId;
+   // @JsonIgnoreProperties("TemperatureId")
+    private java.lang.Long TemperatureId;
     @Column
     private double Temperature;
+
     @Column
     private Timestamp Time;
 
 
-  public  TemperatureSensor() {
+  public TemperatureSensor() {
     }
 
-    public TemperatureSensor(double Temperature,Timestamp Time)
-    {
+    public TemperatureSensor(double Temperature , Timestamp Time) {
         this.Temperature = Temperature;
         this.Time = Time;
     }
 
-    public Long getTemperatureId()
+    public java.lang.Long getTemperatureId()
     {
         return TemperatureId;
     }
 
-    public void setTemperatureId(Long temperatureId)
+    public void setTemperatureId(java.lang.Long temperatureId)
     {
         TemperatureId = temperatureId;
     }
@@ -59,13 +59,13 @@ public class TemperatureSensor
         Temperature = temperature;
     }
 
-    public Timestamp getTime()
-    {
+    public Timestamp getTime() {
         return new Timestamp(System.currentTimeMillis());
     }
 
-    public void setTime(Timestamp time)
-    {
+    public void setTime(Timestamp time) {
         Time = time;
     }
+
+
 }
