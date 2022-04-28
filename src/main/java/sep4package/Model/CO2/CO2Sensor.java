@@ -1,6 +1,7 @@
 package sep4package.Model.CO2;
 
 import org.hibernate.annotations.GenericGenerator;
+import sep4package.Model.Sensors;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -25,6 +26,9 @@ public class CO2Sensor
     private Long CO2Id;
     @Column
     private int CO2Level;
+
+    @OneToOne(mappedBy = "CO2")
+    private Sensors sensors;
 
     public CO2Sensor(int CO2Level) {
         this.CO2Level = CO2Level;

@@ -2,6 +2,7 @@ package sep4package.Model.Temperature;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
+import sep4package.Model.Sensors;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -26,7 +27,8 @@ public class TemperatureSensor
     @Column
     private double Temperature;
 
-
+    @OneToOne(mappedBy = "temperature")
+    private Sensors sensors;
 
 
   public TemperatureSensor() {
@@ -34,6 +36,7 @@ public class TemperatureSensor
 
     public TemperatureSensor(double Temperature) {
         this.Temperature = Temperature;
+
     }
 
     public java.lang.Long getTemperatureId()

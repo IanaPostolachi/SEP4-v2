@@ -1,6 +1,7 @@
 package sep4package.Model.Humidity;
 
 import org.hibernate.annotations.GenericGenerator;
+import sep4package.Model.Sensors;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -23,6 +24,9 @@ public class HumiditySensor
     private java.lang.Long HumidityId;
     @Column
     private double Humidity;
+
+    @OneToOne(mappedBy = "humidity")
+    private Sensors sensors;
 
 
     public HumiditySensor(double Humidity)

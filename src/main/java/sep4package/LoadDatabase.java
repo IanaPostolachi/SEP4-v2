@@ -36,10 +36,9 @@ public class LoadDatabase {
             HumiditySensor humiditySensor2 = new HumiditySensor(6);
             CO2Sensor co2Sensor2 = new CO2Sensor(4);
 
-            Sensors sensors = new Sensors(1 , new Long(200) , new Long(300) , new Long(400) ,new Timestamp(2022,12,11,12,45,30,11));
-            Sensors sensors1 = new Sensors(5 , new Long(50) , new Long(1000) , new Long(770) ,new Timestamp(2002,11,10,11,40,25,10));
-            Sensors sensors2 = new Sensors(10 , new Long(100) , new Long(22100) , new Long(10) ,new Timestamp(2021,10,9,10,35,20,9));
-
+            Sensors sensors = new Sensors(1 , temperatureSensor, humiditySensor , co2Sensor ,new Timestamp(2022,12,11,12,45,30,11));
+            Sensors sensors1 = new Sensors(5 , temperatureSensor1 , humiditySensor1 , co2Sensor1 ,new Timestamp(2002,11,10,11,40,25,10));
+            Sensors sensors2 = new Sensors(10 , temperatureSensor2 , humiditySensor2 , co2Sensor2 ,new Timestamp(2021,10,9,10,35,20,9));
 
 
             log.info("Preloading " + co2Repo.save(co2Sensor));
