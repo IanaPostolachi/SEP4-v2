@@ -50,6 +50,9 @@ public class Sensors {
         Time = time;
     }
 
+    public Sensors() {
+    }
+
     public int getSensorId() {
         return SensorId;
     }
