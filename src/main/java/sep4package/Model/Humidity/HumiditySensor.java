@@ -23,13 +23,11 @@ public class HumiditySensor
     private java.lang.Long HumidityId;
     @Column
     private double Humidity;
-    @Column
-    private  Timestamp Time;
 
-    public HumiditySensor(double Humidity , Timestamp Time)
+
+    public HumiditySensor(double Humidity)
     {
         this.Humidity = Humidity;
-        this.Time = Time;
     }
 
     public HumiditySensor() {
@@ -54,14 +52,5 @@ public class HumiditySensor
     {
         Humidity = humidity;
     }
-
-    public Timestamp getTime() {
-        return new Timestamp(System.currentTimeMillis());
-    }
-
-    public void setTime(Timestamp time) {
-        Time = time;
-    }
-
 
 }

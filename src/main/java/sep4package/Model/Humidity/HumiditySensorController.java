@@ -39,7 +39,6 @@ public class HumiditySensorController
         return repository.findById(id)
                 .map(co2Sensor -> {
                     co2Sensor.setHumidity(newHumiditySensor.getHumidity());
-                    co2Sensor.setTime(newHumiditySensor.getTime());
                     return co2Sensor;
                 })
                 .orElseGet(() -> {

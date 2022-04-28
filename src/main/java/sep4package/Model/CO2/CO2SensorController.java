@@ -39,7 +39,6 @@ public class CO2SensorController
         return repository.findById(id)
                 .map(co2Sensor -> {
                     co2Sensor.setCO2Level(newCO2Sensor.getCO2Level());
-                    co2Sensor.setTime(newCO2Sensor.getTime());
                     return co2Sensor;
                 })
                 .orElseGet(() -> {

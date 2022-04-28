@@ -26,16 +26,14 @@ public class TemperatureSensor
     @Column
     private double Temperature;
 
-    @Column
-    private Timestamp Time;
+
 
 
   public TemperatureSensor() {
     }
 
-    public TemperatureSensor(double Temperature , Timestamp Time) {
+    public TemperatureSensor(double Temperature) {
         this.Temperature = Temperature;
-        this.Time = Time;
     }
 
     public java.lang.Long getTemperatureId()
@@ -58,13 +56,7 @@ public class TemperatureSensor
         Temperature = temperature;
     }
 
-    public Timestamp getTime() {
-        return new Timestamp(System.currentTimeMillis());
-    }
 
-    public void setTime(Timestamp time) {
-        Time = time;
-    }
 
 
 }

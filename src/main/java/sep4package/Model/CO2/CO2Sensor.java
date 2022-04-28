@@ -25,13 +25,10 @@ public class CO2Sensor
     private Long CO2Id;
     @Column
     private int CO2Level;
-    @Column
-    private Timestamp Time;
 
-
-    public CO2Sensor(int CO2Level , Timestamp Time) {
+    public CO2Sensor(int CO2Level) {
         this.CO2Level = CO2Level;
-        this.Time = Time;
+
     }
 
     public CO2Sensor() {
@@ -57,12 +54,5 @@ public class CO2Sensor
         this.CO2Level = CO2Level;
     }
 
-    public Timestamp getTime() {
-        return new Timestamp(System.currentTimeMillis());
-    }
-
-    public void setTime(Timestamp time) {
-        Time = time;
-    }
 
 }
