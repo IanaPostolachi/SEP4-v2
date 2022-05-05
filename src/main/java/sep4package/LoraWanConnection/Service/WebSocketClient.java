@@ -13,6 +13,7 @@ public class WebSocketClient implements WebSocket.Listener
 {
   private WebSocket server = null;
   private  Gson gson;
+  private SensorsConvertingService sensorConvertingService;
 
   public WebSocket getServer()
   {
@@ -31,7 +32,7 @@ public class WebSocketClient implements WebSocket.Listener
         .buildAsync(URI.create(url), this);
 
     server = ws.join();
-    //sensorConvertingService = new SensorConvertingService();
+    sensorConvertingService = new SensorsConvertingService();
     gson = new Gson();
   }
 

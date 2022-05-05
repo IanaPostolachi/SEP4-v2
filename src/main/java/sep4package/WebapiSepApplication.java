@@ -36,8 +36,8 @@ public class WebapiSepApplication
 
 		while (true) {
 			try {
-				//                Only Needed To Mock Values
-				//                sendRandomValues(gson);
+//			Only Needed To Mock Values
+				sendRandomValues(gson);
 
 				Thread.sleep(300000);
 			} catch (InterruptedException e) {
@@ -52,9 +52,10 @@ public class WebapiSepApplication
 		TemperatureSensor temperatureSensortest = new TemperatureSensor(2);
 		HumiditySensor humiditySensortest = new HumiditySensor(6);
 		CO2Sensor co2Sensortest = new CO2Sensor(4);
-
 		Sensors sensors = new Sensors(3 , temperatureSensortest, humiditySensortest , co2Sensortest ,new Timestamp(122,1,11,12,45,30,11));
 		System.out.println(sensors.toString());
+
+
 		ConnectionHandler handler = ConnectionManager.getInstance();
 		NetworkPackage networkPackage = new NetworkPackage("Sensors", sensors);
 		String gsonToServer = gson.toJson(networkPackage);
