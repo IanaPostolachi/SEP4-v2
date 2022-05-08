@@ -1,9 +1,11 @@
 package sep4package.Model.Humidity;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import sep4package.Model.Sensors;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 
 @Entity(name = "Humidity")

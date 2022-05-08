@@ -1,11 +1,13 @@
 package sep4package.Model;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import sep4package.Model.CO2.CO2Sensor;
 import sep4package.Model.Humidity.HumiditySensor;
 import sep4package.Model.Temperature.TemperatureSensor;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 
 @Entity(name = "Sensors")

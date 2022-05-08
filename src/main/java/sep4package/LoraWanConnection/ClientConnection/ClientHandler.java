@@ -45,7 +45,8 @@ public class ClientHandler implements Runnable
       }
       catch (IOException e)
       {
-        System.out.println("Couldn't process request");
+        System.out.println("Couldn't process request" );
+        e.printStackTrace();
       }
     }
   }
