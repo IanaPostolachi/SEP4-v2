@@ -103,7 +103,7 @@ public class Sensors {
     }
 
     public Timestamp getTime() {
-        return new Timestamp(System.currentTimeMillis());
+        return Time;
     }
 
     public void setTime(Timestamp time) {
