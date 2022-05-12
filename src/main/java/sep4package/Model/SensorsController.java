@@ -28,7 +28,4 @@ public class SensorsController
                 () -> new SensorsNotFoundException(id)
         );
     }
-
-
-
 }

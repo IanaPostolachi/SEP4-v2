@@ -9,6 +9,7 @@ import sep4package.Model.CO2.CO2Sensor;
 import sep4package.Model.Humidity.HumiditySensor;
 import sep4package.Model.Sensors;
 import sep4package.Model.Temperature.TemperatureSensor;
+import sep4package.Model.Windows.WindowsRepository;
 import sep4package.WebapiSepApplication;
 
 import java.sql.Timestamp;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WindowControllerTest
 {
   @Autowired
-  WindowRepository repository;
+  WindowsRepository repository;
 
   @Test void all()
   {

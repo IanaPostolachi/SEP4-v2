@@ -1,29 +1,30 @@
-package sep4package.Model.Window;
+package sep4package.Model.Windows;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sep4package.Model.Temperature.TemperatureSensor;
+import sep4package.Model.Humidity.HumiditySensor;
+import sep4package.Model.Sensors;
 
 import java.util.List;
 
 @RestController
-public class WindowController
+public class WindowsController
 {
-  private final WindowRepository repository;
+  private final WindowsRepository repository;
 
-  public WindowController(WindowRepository repository)
+  public WindowsController(WindowsRepository repository)
   {
     this.repository = repository;
   }
 
-  @GetMapping("/windows") List<Window> all() {
+  @GetMapping("/windows") List<Windows> all() {
+
     return repository.findAll();
   }
 
-  @PostMapping("/window")
-  Window newTemperature(@RequestBody Window newWindow) {
+  @PostMapping("/newWindow") Windows newWindow(@RequestBody Windows newWindow) {
     return repository.save(newWindow);
   }
 }

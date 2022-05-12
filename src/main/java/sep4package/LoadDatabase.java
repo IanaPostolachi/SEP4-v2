@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import sep4package.Model.Window.Window;
-import sep4package.Model.Window.WindowRepository;
+import sep4package.Model.Windows.Windows;
+import sep4package.Model.Windows.WindowsRepository;
 
 import java.sql.Timestamp;
 
@@ -26,14 +26,14 @@ import java.sql.Timestamp;
   @Bean CommandLineRunner initDatabase(
       TemperatureSensorRepository temperatureRepo, CO2SensorRepository co2Repo,
       HumiditySensorRepository humidityRepo,
-      SensorsRepository sensorsRepository, WindowRepository windowRepository)
+      SensorsRepository sensorsRepository, WindowsRepository windowsRepository)
   {
     return args -> {
                   TemperatureSensor temperatureSensor = new TemperatureSensor(22);
                   HumiditySensor humiditySensor = new HumiditySensor(60);
                   CO2Sensor co2Sensor = new CO2Sensor(400);
-      //
-      Window window1 = new Window(false,new Timestamp(2021,12,11,12,45,30,11));
+
+      Windows window1 = new Windows(false,new Timestamp(2021,12,11,12,45,30,11));
       //            TemperatureSensor temperatureSensor1 = new TemperatureSensor(12);
       //            HumiditySensor humiditySensor1 = new HumiditySensor(6);
       //            CO2Sensor co2Sensor1 = new CO2Sensor(40);
@@ -51,7 +51,7 @@ import java.sql.Timestamp;
                   log.info("Preloading " + humidityRepo.save(humiditySensor));
                   log.info("Preloading " + temperatureRepo.save(temperatureSensor));
                   log.info("Preloading " + sensorsRepository.save(sensors));
-                  log.info("Preloading " + windowRepository.save(window1));
+                  log.info("Preloading " + windowsRepository.save(window1));
       //
       //            log.info("Preloading " + humidityRepo.save(humiditySensor1));
       //            log.info("Preloading " + temperatureRepo.save(temperatureSensor1));

@@ -34,10 +34,6 @@ public class Sensors {
     @JoinColumn(name = "CO2Id")
     private CO2Sensor CO2;
 
-    @Column
-    private boolean IsLightOn;
-    @Column
-    private boolean IsWindowOpen;
 
     @Column
     private Timestamp Time;
@@ -46,8 +42,6 @@ public class Sensors {
         temperature = temperatureId;
         humidity = humidityId;
         this.CO2 = Co2;
-        IsLightOn = false;
-        IsWindowOpen = false;
         Time = time;
     }
 
@@ -84,22 +78,6 @@ public class Sensors {
 
     public void setCO2(CO2Sensor co2) {
         this.CO2 = co2;
-    }
-
-    public boolean isLightOn() {
-        return IsLightOn;
-    }
-
-    public void setLightOn(boolean lightOn) {
-        IsLightOn = lightOn;
-    }
-
-    public boolean isWindowOpen() {
-        return IsWindowOpen;
-    }
-
-    public void setWindowOpen(boolean windowOpen) {
-        IsWindowOpen = windowOpen;
     }
 
     public Timestamp getTime() {
