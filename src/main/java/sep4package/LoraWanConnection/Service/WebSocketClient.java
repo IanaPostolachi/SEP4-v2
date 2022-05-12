@@ -3,6 +3,8 @@ package sep4package.LoraWanConnection.Service;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
+import sep4package.Model.Sensors;
+import sep4package.Model.SensorsRepository;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,6 +16,10 @@ import java.util.concurrent.CompletionStage;
 public class WebSocketClient implements WebSocket.Listener
 {
   private WebSocket server = null;
+  private Gson gson = new Gson();
+  HexConverter hexConverter = new HexConverter();
+//  private SensorsRepository sensorsRepository;
+  Sensors sensorsToDatabase;
 
 
   public WebSocket getServer()
@@ -77,12 +83,15 @@ public class WebSocketClient implements WebSocket.Listener
     try
     {
       indented = (new JSONObject(data.toString())).toString(4);
+      UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
+      sensorsToDatabase = hexConverter.convertFromHexToInt(upLinkDataMessage);
+//      sensorsRepository.save(sensorsToDatabase);
     }
     catch (JSONException e)
     {
       e.printStackTrace();
     }
-    System.out.println(indented);
+    System.out.println(indented + sensorsToDatabase.getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   };

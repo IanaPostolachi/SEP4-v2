@@ -42,8 +42,7 @@ public class Sensors {
     @Column
     private Timestamp Time;
 
-    public Sensors(int sensorId, TemperatureSensor temperatureId, HumiditySensor humidityId, CO2Sensor Co2, Timestamp time) {
-        SensorId = sensorId;
+    public Sensors(TemperatureSensor temperatureId, HumiditySensor humidityId, CO2Sensor Co2, Timestamp time) {
         temperature = temperatureId;
         humidity = humidityId;
         this.CO2 = Co2;

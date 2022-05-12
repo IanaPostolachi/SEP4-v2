@@ -1,5 +1,7 @@
 package sep4package.LoraWanConnection.Service;
 
+import java.sql.Timestamp;
+
 public class UpLinkDataMessage
 {
   private String cmd;
