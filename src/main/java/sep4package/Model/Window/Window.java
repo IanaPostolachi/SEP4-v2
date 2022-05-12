@@ -10,17 +10,36 @@ import java.sql.Timestamp;
 public class Window
 {
   @Id
-  @Column(updatable = false)
   @GeneratedValue(generator = "sequence-generator")
   @GenericGenerator(name = "sequence-generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
       @org.hibernate.annotations.Parameter(name = "sequence_name", value = "window_sequence"),
       @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
       @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")})
-  private int WindowId;
+  private Long WindowId;
   @Column
   public boolean isWindowOpen;
   @Column
   public Timestamp time;
+
+  public Window()
+  {
+  }
+
+  public Window( boolean isWindowOpen, Timestamp time)
+  {
+    this.isWindowOpen = isWindowOpen;
+    this.time = time;
+  }
+
+  public Long getWindowId()
+  {
+    return WindowId;
+  }
+
+  public void setWindowId(Long windowId)
+  {
+    WindowId = windowId;
+  }
 
   public boolean isWindowOpen() {
     return isWindowOpen;
@@ -35,6 +54,6 @@ public class Window
   }
 
   public void setTime(Timestamp time) {
-    time = time;
+    this.time = time;
   }
 }
