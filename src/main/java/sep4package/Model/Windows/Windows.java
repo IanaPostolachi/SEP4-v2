@@ -54,4 +54,14 @@ public class Windows
   {
     this.timestamp = timestamp;
   }
+
+  public Long getWindowId()
+  {
+    return windowId;
+  }
+
+  public void setWindowId(Long windowId)
+  {
+    this.windowId = windowId;
+  }
 }
