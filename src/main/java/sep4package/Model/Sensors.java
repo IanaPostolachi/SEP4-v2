@@ -20,17 +20,17 @@ public class Sensors {
             @org.hibernate.annotations.Parameter(name = "sequence_name", value = "sensors_sequence"),
             @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")})
-    private int SensorId;
+    private long SensorId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TemperatureId")
     private TemperatureSensor temperature;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "HumidityId")
     private HumiditySensor humidity;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CO2Id")
     private CO2Sensor CO2;
 
@@ -48,11 +48,11 @@ public class Sensors {
     public Sensors() {
     }
 
-    public int getSensorId() {
+    public long getSensorId() {
         return SensorId;
     }
 
-    public void setSensorId(int sensorId) {
+    public void setSensorId(long sensorId) {
         SensorId = sensorId;
     }
 
