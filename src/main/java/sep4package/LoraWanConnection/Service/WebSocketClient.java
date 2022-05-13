@@ -1,6 +1,7 @@
 package sep4package.LoraWanConnection.Service;
 
 import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import sep4package.Model.Sensors;
@@ -39,9 +40,9 @@ public class WebSocketClient implements WebSocket.Listener
 
     server = ws.join();
   }
-
-  //onOpen()
   public void onOpen(WebSocket webSocket) {
+
+    //onOpen()
     // This WebSocket will invoke onText, onBinary, onPing, onPong or onClose methods on the associated listener (i.e. receive methods) up to n more times
     webSocket.request(1);
     System.out.println("WebSocket Listener has been opened for requests.");
@@ -91,7 +92,7 @@ public class WebSocketClient implements WebSocket.Listener
     {
       e.printStackTrace();
     }
-    System.out.println(indented + sensorsToDatabase.getTemperature());
+    System.out.println(indented + sensorsToDatabase.getTemperature().getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   };
