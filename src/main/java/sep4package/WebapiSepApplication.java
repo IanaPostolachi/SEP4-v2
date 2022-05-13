@@ -17,7 +17,6 @@ import java.util.ArrayList;
 @SpringBootApplication
 public class WebapiSepApplication
 {
-
 	public static void main(String[] args) throws IOException
 	{
 		SpringApplication.run(WebapiSepApplication.class, args);

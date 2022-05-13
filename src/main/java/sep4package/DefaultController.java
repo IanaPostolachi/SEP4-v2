@@ -8,6 +8,6 @@ public class DefaultController {
 
     @GetMapping("/")
     String health() {
-        return "Warning state whyyyyyyyyyyyyyyy ";
+        return "SEP4";
     }
 }

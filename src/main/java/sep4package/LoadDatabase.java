@@ -50,7 +50,7 @@ import java.sql.Timestamp;
                   log.info("Preloading " + co2Repo.save(co2Sensor));
                   log.info("Preloading " + humidityRepo.save(humiditySensor));
                   log.info("Preloading " + temperatureRepo.save(temperatureSensor));
-                  log.info("Preloading " + sensorsRepository.save(sensors));
+         //         log.info("Preloading " + sensorsRepository.save(sensors));
                   log.info("Preloading " + windowsRepository.save(window1));
       //
       //            log.info("Preloading " + humidityRepo.save(humiditySensor1));
