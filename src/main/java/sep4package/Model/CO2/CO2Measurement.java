@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "CO2")
 @Table(name = "co2")
-public class CO2Sensor
+public class CO2Measurement
 {
 
     @Id
@@ -32,12 +32,12 @@ public class CO2Sensor
     @OneToOne(mappedBy = "CO2")
     private Sensors sensors;
 
-    public CO2Sensor(int CO2Level) {
+    public CO2Measurement(int CO2Level) {
         this.CO2Level = CO2Level;
 
     }
 
-    public CO2Sensor() {
+    public CO2Measurement() {
     }
 
     public java.lang.Long getCO2Id()

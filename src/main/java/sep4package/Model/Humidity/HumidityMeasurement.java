@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
 @Entity(name = "Humidity")
 @Table(name = "humidity")
-public class HumiditySensor
+public class HumidityMeasurement
 {
     @Id
     @GeneratedValue(generator = "sequence-generator")
@@ -31,12 +31,12 @@ public class HumiditySensor
     private Sensors sensors;
 
 
-    public HumiditySensor(double Humidity)
+    public HumidityMeasurement(double Humidity)
     {
         this.Humidity = Humidity;
     }
 
-    public HumiditySensor() {
+    public HumidityMeasurement() {
     }
 
     public java.lang.Long getHumidityId()

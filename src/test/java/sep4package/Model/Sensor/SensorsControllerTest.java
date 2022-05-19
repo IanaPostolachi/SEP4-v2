@@ -5,12 +5,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sep4package.Model.CO2.CO2Sensor;
-import sep4package.Model.Humidity.HumiditySensor;
+import sep4package.Model.CO2.CO2Measurement;
+import sep4package.Model.Humidity.HumidityMeasurement;
 import sep4package.Model.Sensors;
 
 import sep4package.Model.SensorsRepository;
-import sep4package.Model.Temperature.TemperatureSensor;
+import sep4package.Model.Temperature.TemperatureMeasurement;
 import sep4package.WebapiSepApplication;
 
 import java.sql.Timestamp;
@@ -27,11 +27,11 @@ class SensorsControllerTest
 
     @Test void all()
     {
-        TemperatureSensor temperatureSensor = new TemperatureSensor(22);
-        HumiditySensor humiditySensor = new HumiditySensor(60);
-        CO2Sensor co2Sensor = new CO2Sensor(400);
+        TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(22);
+        HumidityMeasurement humidityMeasurement = new HumidityMeasurement(60);
+        CO2Measurement co2Measurement = new CO2Measurement(400);
 
-        Sensors sensors = new Sensors(temperatureSensor, humiditySensor , co2Sensor ,new Timestamp(2022,12,11,12,45,30,11));
+        Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement, co2Measurement,new Timestamp(2022,12,11,12,45,30,11));
         Sensors sensor = repository.save(sensors);
 
         Sensors foundSensor = repository.findById(sensor.getSensorId()).orElse(null);

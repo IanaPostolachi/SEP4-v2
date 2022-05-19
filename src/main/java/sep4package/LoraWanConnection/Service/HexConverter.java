@@ -1,10 +1,9 @@
 package sep4package.LoraWanConnection.Service;
 
-import org.apache.tomcat.jni.Time;
-import sep4package.Model.CO2.CO2Sensor;
-import sep4package.Model.Humidity.HumiditySensor;
+import sep4package.Model.CO2.CO2Measurement;
+import sep4package.Model.Humidity.HumidityMeasurement;
 import sep4package.Model.Sensors;
-import sep4package.Model.Temperature.TemperatureSensor;
+import sep4package.Model.Temperature.TemperatureMeasurement;
 
 import java.sql.Timestamp;
 
@@ -31,19 +30,19 @@ public class HexConverter
 
     String hexValCo2 = data.getData().substring(0, 4);
     co2Level = Integer.parseInt(hexValCo2, 16);
-    CO2Sensor co2Sensor = new CO2Sensor(co2Level);
+    CO2Measurement co2Measurement = new CO2Measurement(co2Level);
 
     String hexValTemp = data.getData().substring(4,8);
     temperature = Integer.parseInt(hexValTemp, 16);
-    TemperatureSensor temperatureSensor = new TemperatureSensor(temperature);
+    TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(temperature);
 
     String hexValHum = data.getData().substring(8,12);
     humidity = Integer.parseInt(hexValHum, 16);
-    HumiditySensor humiditySensor = new HumiditySensor(humidity);
+    HumidityMeasurement humidityMeasurement = new HumidityMeasurement(humidity);
 
     timestamp = new Timestamp(data.getTs());
 
-    Sensors sensors = new Sensors(temperatureSensor,humiditySensor,co2Sensor,timestamp);
+    Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement, co2Measurement,timestamp);
 
     return sensors;
   }

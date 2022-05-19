@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 
 @Entity(name = "Temperature")
 @Table(name = "temperature")
-public class TemperatureSensor
+public class TemperatureMeasurement
 {
     @Id
     @GeneratedValue(generator = "sequence-generator")
@@ -33,10 +33,10 @@ public class TemperatureSensor
     private Sensors sensors;
 
 
-  public TemperatureSensor() {
+  public TemperatureMeasurement() {
     }
 
-    public TemperatureSensor(double Temperature) {
+    public TemperatureMeasurement(double Temperature) {
         this.Temperature = Temperature;
 
     }

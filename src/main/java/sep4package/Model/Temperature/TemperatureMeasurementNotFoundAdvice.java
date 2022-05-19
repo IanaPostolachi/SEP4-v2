@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class TemperatureSensorNotFoundAdvice
+public class TemperatureMeasurementNotFoundAdvice
 {
     @ResponseBody
-    @ExceptionHandler(TemperatureSensorNotFoundException.class)
+    @ExceptionHandler(TemperatureMeasurementNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String emploeeNotFoundHandler(TemperatureSensorNotFoundException ex) {
+    String emploeeNotFoundHandler(TemperatureMeasurementNotFoundException ex) {
         return ex.getMessage();
     }
 }

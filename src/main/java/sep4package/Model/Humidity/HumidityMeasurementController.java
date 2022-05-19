@@ -5,25 +5,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class HumiditySensorController
+public class HumidityMeasurementController
 {
 
     private final HumiditySensorRepository repository;
 
 
-    public HumiditySensorController(HumiditySensorRepository repository) {
+    public HumidityMeasurementController(HumiditySensorRepository repository) {
         this.repository = repository;
     }
 
     @GetMapping("/humiditySensors")
-    List<HumiditySensor> all() {
+    List<HumidityMeasurement> all() {
         return repository.findAll();
     }
 
     @GetMapping("/humiditySensor/{id}")
-    HumiditySensor one(@PathVariable java.lang.Long id) {
+    HumidityMeasurement one(@PathVariable java.lang.Long id) {
         return repository.findById(id).orElseThrow(
-                () -> new HumiditySensorNotFoundException(id)
+                () -> new HumidityMeasurementNotFoundException(id)
         );
     }
 
@@ -35,21 +35,21 @@ public class HumiditySensorController
 //    }
 
     @PutMapping("/humiditySensor/{id}")
-    HumiditySensor updateHumidityLevel(@RequestBody HumiditySensor newHumiditySensor, @PathVariable java.lang.Long id) {
+    HumidityMeasurement updateHumidityLevel(@RequestBody HumidityMeasurement newHumidityMeasurement, @PathVariable java.lang.Long id) {
         return repository.findById(id)
                 .map(co2Sensor -> {
-                    co2Sensor.setHumidity(newHumiditySensor.getHumidity());
+                    co2Sensor.setHumidity(newHumidityMeasurement.getHumidity());
                     return co2Sensor;
                 })
                 .orElseGet(() -> {
-                    newHumiditySensor.setHumidityId(id);
-                    return repository.save(newHumiditySensor);
+                    newHumidityMeasurement.setHumidityId(id);
+                    return repository.save(newHumidityMeasurement);
                 });
     }
 
     @PostMapping("/humiditySensor")
-    HumiditySensor newHumiditySensor(@RequestBody HumiditySensor newHumiditySensor) {
-        return repository.save(newHumiditySensor);
+    HumidityMeasurement newHumiditySensor(@RequestBody HumidityMeasurement newHumidityMeasurement) {
+        return repository.save(newHumidityMeasurement);
     }
 
     @DeleteMapping("/humiditySensors/{id}")

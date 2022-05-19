@@ -1,13 +1,11 @@
 package sep4package.Model;
 
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
-import sep4package.Model.CO2.CO2Sensor;
-import sep4package.Model.Humidity.HumiditySensor;
-import sep4package.Model.Temperature.TemperatureSensor;
+import sep4package.Model.CO2.CO2Measurement;
+import sep4package.Model.Humidity.HumidityMeasurement;
+import sep4package.Model.Temperature.TemperatureMeasurement;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.sql.Timestamp;
 
 @Entity(name = "Sensors")
@@ -24,21 +22,21 @@ public class Sensors {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TemperatureId")
-    private TemperatureSensor temperature;
+    private TemperatureMeasurement temperature;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "HumidityId")
-    private HumiditySensor humidity;
+    private HumidityMeasurement humidity;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CO2Id")
-    private CO2Sensor CO2;
+    private CO2Measurement CO2;
 
 
     @Column
     private Timestamp Time;
 
-    public Sensors(TemperatureSensor temperatureId, HumiditySensor humidityId, CO2Sensor Co2, Timestamp time) {
+    public Sensors(TemperatureMeasurement temperatureId, HumidityMeasurement humidityId, CO2Measurement Co2, Timestamp time) {
         temperature = temperatureId;
         humidity = humidityId;
         this.CO2 = Co2;
@@ -56,27 +54,27 @@ public class Sensors {
         SensorId = sensorId;
     }
 
-    public TemperatureSensor getTemperature() {
+    public TemperatureMeasurement getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(TemperatureSensor temperatureId) {
+    public void setTemperature(TemperatureMeasurement temperatureId) {
         temperature = temperatureId;
     }
 
-    public HumiditySensor getHumidity() {
+    public HumidityMeasurement getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(HumiditySensor humidityId) {
+    public void setHumidity(HumidityMeasurement humidityId) {
         humidity = humidityId;
     }
 
-    public CO2Sensor getCO2() {
+    public CO2Measurement getCO2() {
         return CO2;
     }
 
-    public void setCO2(CO2Sensor co2) {
+    public void setCO2(CO2Measurement co2) {
         this.CO2 = co2;
     }
 
