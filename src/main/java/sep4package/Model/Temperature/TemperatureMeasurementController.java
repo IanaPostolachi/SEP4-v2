@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class TemperatureSensorController
+public class TemperatureMeasurementController
 {
 
     private final TemperatureSensorRepository repository;
 
-    TemperatureSensorController(TemperatureSensorRepository repository) {
+    TemperatureMeasurementController(TemperatureSensorRepository repository) {
         this.repository = repository;
     }
 

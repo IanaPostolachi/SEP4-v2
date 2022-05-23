@@ -1,9 +1,6 @@
 package sep4package.Model.Windows;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,9 @@ public class WindowsController
 
   @PostMapping("/newWindow") Windows newWindow(@RequestBody Windows newWindow) {
     return repository.save(newWindow);
+  }
+
+  @DeleteMapping("/windows/{id}")public void deleteWindow(@PathVariable Long id) {
+    repository.deleteById(id);
   }
 }
