@@ -32,7 +32,7 @@ import java.sql.Timestamp;
                   HumidityMeasurement humidityMeasurement = new HumidityMeasurement(60);
                   CO2Measurement co2Measurement = new CO2Measurement(400);
 
-      Windows window1 = new Windows(false,new Timestamp(2021,12,11,12,45,30,11));
+//      Windows window1 = new Windows(false,new Timestamp(2021,12,11,12,45,30,11));
       //            TemperatureSensor temperatureSensor1 = new TemperatureSensor(12);
       //            HumiditySensor humiditySensor1 = new HumiditySensor(6);
       //            CO2Sensor co2Sensor1 = new CO2Sensor(40);
@@ -50,7 +50,7 @@ import java.sql.Timestamp;
                   log.info("Preloading " + humidityRepo.save(humidityMeasurement));
                   log.info("Preloading " + temperatureRepo.save(temperatureMeasurement));
          //         log.info("Preloading " + sensorsRepository.save(sensors));
-                  log.info("Preloading " + windowsRepository.save(window1));
+//                  log.info("Preloading " + windowsRepository.save(window1));
       //
       //            log.info("Preloading " + humidityRepo.save(humiditySensor1));
       //            log.info("Preloading " + temperatureRepo.save(temperatureSensor1));

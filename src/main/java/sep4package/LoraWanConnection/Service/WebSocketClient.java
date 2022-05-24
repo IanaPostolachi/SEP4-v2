@@ -6,11 +6,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import sep4package.Model.Sensors;
 import sep4package.Model.SensorsRepository;
+import sep4package.Model.Windows.Windows;
+import sep4package.Model.Windows.WindowsRepository;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -20,6 +25,7 @@ public class WebSocketClient implements WebSocket.Listener
   private Gson gson = new Gson();
   HexConverter hexConverter = new HexConverter();
   private SensorsRepository sensorsRepository;
+  private WindowsRepository windowsRepository;
   Sensors sensorsToDatabase;
 
 
@@ -92,8 +98,44 @@ public class WebSocketClient implements WebSocket.Listener
     {
       e.printStackTrace();
     }
+    try
+    {
+      sendData();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
     System.out.println(indented + sensorsToDatabase.getTemperature().getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
-  };
+  }
+
+  public void sendData()
+  {
+    String windowState;
+
+    try
+    {
+      //Getting the window from the Database with the JPA repository
+      Optional<Windows> windows = windowsRepository.findById(Long.parseLong("1"));
+      if (windows.get().isWindowOpen())
+      {
+        windowState = "100";
+      }
+      else
+      {
+        windowState = "-100";
+      }
+
+      DownLinkDataMessage downLinkDataMessage = new DownLinkDataMessage(windowState);
+
+      System.out.println(gson.toJson(downLinkDataMessage));
+      sendDownLink(gson.toJson(downLinkDataMessage));
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
 }
