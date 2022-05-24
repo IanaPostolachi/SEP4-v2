@@ -1,5 +1,6 @@
 package sep4package;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import sep4package.Model.CO2.CO2Measurement;
 import sep4package.Model.Humidity.HumidityMeasurement;
 import sep4package.Model.Humidity.HumiditySensorRepository;
@@ -18,18 +19,25 @@ import sep4package.Model.Windows.WindowsRepository;
 
 import java.sql.Timestamp;
 
-@Configuration public class LoadDatabase
-{
-  private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+@Configuration
+public class LoadDatabase {
+    private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-  @Bean CommandLineRunner initDatabase(
-      TemperatureSensorRepository temperatureRepo, CO2SensorRepository co2Repo,
-      HumiditySensorRepository humidityRepo,
-      SensorsRepository sensorsRepository,
-      WindowsRepository windowsRepository)
-  {
-    return args -> {
-      TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(
+    @Bean
+    CommandLineRunner initDatabase(
+            @Autowired
+            TemperatureSensorRepository temperatureRepo,
+            @Autowired
+            CO2SensorRepository co2Repo,
+            @Autowired
+            HumiditySensorRepository humidityRepo,
+            @Autowired
+            SensorsRepository sensorsRepository,
+            @Autowired
+            WindowsRepository windowsRepository) {
+        return args -> {
+
+/*      TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(
           22);
       HumidityMeasurement humidityMeasurement = new HumidityMeasurement(60);
       CO2Measurement co2Measurement = new CO2Measurement(400);
@@ -66,8 +74,8 @@ import java.sql.Timestamp;
       log.info("Preloading " + temperatureRepo.save(temperatureMeasurement2));
       log.info("Preloading " + co2Repo.save(co2Measurement2));
       log.info("Preloading " + humidityRepo.save(humidityMeasurement2));
-      log.info("Preloading " + sensorsRepository.save(sensors2));
-    };
-  }
+      log.info("Preloading " + sensorsRepository.save(sensors2));*/
+        };
+    }
 }
 
