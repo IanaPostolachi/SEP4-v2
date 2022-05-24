@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import sep4package.Model.DataAccess;
 import sep4package.Model.Sensors;
 import sep4package.Model.SensorsRepository;
 import sep4package.Model.SensorsService;
@@ -28,8 +29,7 @@ public class WebSocketClient implements WebSocket.Listener
   private Gson gson = new Gson();
   HexConverter hexConverter = new HexConverter();
   private Sensors sensorsToDatabase;
-  private SensorsService service;
-  private SensorsRepository repository;
+private DataAccess dataAccess;
 
   public Sensors getSensorsToDatabase()
   {
@@ -53,7 +53,7 @@ public class WebSocketClient implements WebSocket.Listener
         .buildAsync(URI.create(url), this);
 
     server = ws.join();
-    service = new SensorsService(sensorsToDatabase);
+    dataAccess = DataAccess.dataAccess();
   }
   public void onOpen(WebSocket webSocket) {
 
@@ -101,15 +101,19 @@ public class WebSocketClient implements WebSocket.Listener
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
       sensorsToDatabase = hexConverter.convertFromHexToInt(upLinkDataMessage);
-      if (service != null)
+      if (dataAccess == null)
       {
-        service.addSensors();
+        System.out.println(upLinkDataMessage.getData());
       }
-      else System.out.println(upLinkDataMessage.getData());
+      else
+      {
+        dataAccess.addSensors(sensorsToDatabase);
+      }
     }
     catch (JSONException e)
     {
-      e.printStackTrace();
+//      e.printStackTrace();
+      System.out.println("Nooooooooooooooooooooooooo!");
     }
   /*  try
     {
