@@ -8,8 +8,7 @@ public class DownLinkDataMessage
   private boolean confirmed;
   private String data;
 
-  public DownLinkDataMessage(boolean confirmed, String data) {
-    this.confirmed = confirmed;
+  public DownLinkDataMessage(String data) {
     this.data = data;
   }
 
