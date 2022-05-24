@@ -139,11 +139,11 @@ private DataAccess dataAccess;
       Optional<Windows> windows = windowsRepository.findById(Long.parseLong("1"));
       if (windows.get().isWindowOpen())
       {
-        windowState = "100";
+        windowState = "0064";
       }
       else
       {
-        windowState = "-100";
+        windowState = "ff9c";
       }
 
       DownLinkDataMessage downLinkDataMessage = new DownLinkDataMessage(windowState);
