@@ -2,16 +2,14 @@ package sep4package.Model;
 
 public class SensorsService
 {
-    private SensorsRepository repository;
-    private Sensors sensors;
+    private final SensorsRepository repository;
 
 
-    public SensorsService(Sensors sensors) {
-        this.sensors = sensors;
-
+    public SensorsService(SensorsRepository repository) {
+        this.repository = repository;
     }
 
-    public void addSensors()
+    public void addSensors(Sensors sensors)
     {
         repository.save(sensors);
     }
