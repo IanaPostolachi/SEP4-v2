@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Table(name = "co2")
 public class CO2Measurement
 {
-
     @Id
     @GeneratedValue(generator = "sequence-generator")
     @GenericGenerator(
