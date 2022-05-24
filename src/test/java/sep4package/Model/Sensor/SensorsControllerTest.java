@@ -1,3 +1,4 @@
+/*
 package sep4package.Model.Sensor;
 
 import org.junit.jupiter.api.Test;
@@ -40,4 +41,4 @@ class SensorsControllerTest
         assertEquals(sensor.getSensorId(), foundSensor.getSensorId());
 
     }
-}
+}*/

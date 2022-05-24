@@ -25,7 +25,8 @@ import java.sql.Timestamp;
   @Bean CommandLineRunner initDatabase(
       TemperatureSensorRepository temperatureRepo, CO2SensorRepository co2Repo,
       HumiditySensorRepository humidityRepo,
-      SensorsRepository sensorsRepository, WindowsRepository windowsRepository)
+      SensorsRepository sensorsRepository,
+      WindowsRepository windowsRepository)
   {
     return args -> {
       TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(

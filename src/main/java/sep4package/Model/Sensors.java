@@ -1,5 +1,6 @@
 package sep4package.Model;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import sep4package.Model.CO2.CO2Measurement;
 import sep4package.Model.Humidity.HumidityMeasurement;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity(name = "Sensors")
-@Table(name = "sensors")
+@Table(name = "sensors_data")
 public class Sensors {
     @Id
     @Column(updatable = false)
@@ -39,7 +40,7 @@ public class Sensors {
     public Sensors(TemperatureMeasurement temperatureId, HumidityMeasurement humidityId, CO2Measurement Co2, Timestamp time) {
         temperature = temperatureId;
         humidity = humidityId;
-        CO2 = Co2;
+        this.CO2 = Co2;
         Time = time;
     }
 
