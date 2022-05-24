@@ -26,6 +26,7 @@ public class HexConverter
     int co2Level;
     int temperature;
     int humidity;
+    boolean state;
     Timestamp timestamp;
 
     String hexValCo2 = data.getData().substring(0, 4);
@@ -39,6 +40,7 @@ public class HexConverter
     String hexValHum = data.getData().substring(8,12);
     humidity = Integer.parseInt(hexValHum, 16);
     HumidityMeasurement humidityMeasurement = new HumidityMeasurement(humidity);
+
 
     timestamp = new Timestamp(data.getTs());
 

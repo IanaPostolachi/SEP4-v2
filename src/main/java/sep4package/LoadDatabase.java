@@ -25,15 +25,10 @@ public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(
-            @Autowired
             TemperatureSensorRepository temperatureRepo,
-            @Autowired
             CO2SensorRepository co2Repo,
-            @Autowired
             HumiditySensorRepository humidityRepo,
-            @Autowired
             SensorsRepository sensorsRepository,
-            @Autowired
             WindowsRepository windowsRepository) {
         return args -> {
 

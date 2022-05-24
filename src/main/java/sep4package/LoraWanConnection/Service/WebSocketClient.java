@@ -7,9 +7,11 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import sep4package.Model.Sensors;
 import sep4package.Model.SensorsRepository;
+import sep4package.Model.SensorsService;
 import sep4package.Model.Windows.Windows;
 import sep4package.Model.Windows.WindowsRepository;
 
+import javax.persistence.EntityManager;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
@@ -25,9 +27,14 @@ public class WebSocketClient implements WebSocket.Listener
   private WebSocket server = null;
   private Gson gson = new Gson();
   HexConverter hexConverter = new HexConverter();
-  @Autowired
-  private SensorsRepository sensorsRepository;
-  Sensors sensorsToDatabase;
+  private Sensors sensorsToDatabase;
+  private SensorsService service;
+  private SensorsRepository repository;
+
+  public Sensors getSensorsToDatabase()
+  {
+    return sensorsToDatabase;
+  }
 
 
   public WebSocket getServer()
@@ -46,6 +53,7 @@ public class WebSocketClient implements WebSocket.Listener
         .buildAsync(URI.create(url), this);
 
     server = ws.join();
+    service = new SensorsService(sensorsToDatabase);
   }
   public void onOpen(WebSocket webSocket) {
 
@@ -93,12 +101,11 @@ public class WebSocketClient implements WebSocket.Listener
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
       sensorsToDatabase = hexConverter.convertFromHexToInt(upLinkDataMessage);
-      if (sensorsRepository != null)
+      if (service != null)
       {
-        sensorsRepository.save(sensorsToDatabase);
-        System.out.println("Data saved");
+        service.addSensors();
       }
-      else System.out.println(upLinkDataMessage);
+      else System.out.println(upLinkDataMessage.getData());
     }
     catch (JSONException e)
     {
@@ -113,7 +120,7 @@ public class WebSocketClient implements WebSocket.Listener
       e.printStackTrace();
       System.out.println(e.getCause());
     }*/
-    System.out.println(indented + sensorsToDatabase.getTemperature().getTemperature());
+  //  System.out.println(indented + sensorsToDatabase.getTemperature().getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
