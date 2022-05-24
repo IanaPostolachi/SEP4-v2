@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity(name = "Sensors")
-@Table(name = "sensors_data")
+@Table(name = "sensors")
 public class Sensors {
     @Id
     @Column(updatable = false)
@@ -20,15 +20,15 @@ public class Sensors {
             @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")})
     private long SensorId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "TemperatureId")
     private TemperatureMeasurement temperature;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "HumidityId")
     private HumidityMeasurement humidity;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "CO2Id")
     private CO2Measurement CO2;
 
@@ -39,7 +39,7 @@ public class Sensors {
     public Sensors(TemperatureMeasurement temperatureId, HumidityMeasurement humidityId, CO2Measurement Co2, Timestamp time) {
         temperature = temperatureId;
         humidity = humidityId;
-        this.CO2 = Co2;
+        CO2 = Co2;
         Time = time;
     }
 
