@@ -1,5 +1,6 @@
 package sep4package.Model.CO2;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 @RestController
 public class CO2MeasurementController
 {
-
+    @Autowired
     private final CO2SensorRepository repository;
 
 

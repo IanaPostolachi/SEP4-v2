@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import sep4package.Model.Sensors;
 import sep4package.Model.SensorsRepository;
 import sep4package.Model.Windows.Windows;
@@ -24,8 +25,8 @@ public class WebSocketClient implements WebSocket.Listener
   private WebSocket server = null;
   private Gson gson = new Gson();
   HexConverter hexConverter = new HexConverter();
+  @Autowired
   private SensorsRepository sensorsRepository;
-  private WindowsRepository windowsRepository;
   Sensors sensorsToDatabase;
 
 
@@ -92,25 +93,31 @@ public class WebSocketClient implements WebSocket.Listener
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
       sensorsToDatabase = hexConverter.convertFromHexToInt(upLinkDataMessage);
-      sensorsRepository.save(sensorsToDatabase);
+      if (sensorsRepository != null)
+      {
+        sensorsRepository.save(sensorsToDatabase);
+        System.out.println("Data saved");
+      }
+      else System.out.println(upLinkDataMessage);
     }
     catch (JSONException e)
     {
       e.printStackTrace();
     }
-    try
+  /*  try
     {
       sendData();
     }
     catch (Exception e)
     {
       e.printStackTrace();
-    }
+      System.out.println(e.getCause());
+    }*/
     System.out.println(indented + sensorsToDatabase.getTemperature().getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
-
+/*
   public void sendData()
   {
     String windowState;
@@ -137,5 +144,5 @@ public class WebSocketClient implements WebSocket.Listener
     {
       e.printStackTrace();
     }
-  }
+  }*/
 }
