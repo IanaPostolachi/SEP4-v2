@@ -20,6 +20,7 @@ public class WindowsController
   }
 
   @PostMapping("/newWindow") Windows newWindow(@RequestBody Windows newWindow) {
+    repository.deleteAll();
     return repository.save(newWindow);
   }
 

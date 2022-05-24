@@ -43,8 +43,8 @@ public class TemperatureMeasurementController
                 });
     }
 
-    @DeleteMapping("removeTemperatures/{id}")
-    void deleteTemperature(@PathVariable java.lang.Long id) {
+    @DeleteMapping("temperatures/{id}")
+    void deleteTemperature(@PathVariable Long id) {
         repository.deleteById(id);
     }
 }
