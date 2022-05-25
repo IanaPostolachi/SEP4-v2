@@ -56,6 +56,7 @@ public class LoadDatabase {
           humidityMeasurement2, co2Measurement2,
           new Timestamp(2021, 10, 9, 10, 35, 20, 9));
 
+
       log.info("Preloading " + co2Repo.save(co2Measurement));
       log.info("Preloading " + humidityRepo.save(humidityMeasurement));
       log.info("Preloading " + temperatureRepo.save(temperatureMeasurement));
@@ -70,6 +71,9 @@ public class LoadDatabase {
       log.info("Preloading " + co2Repo.save(co2Measurement2));
       log.info("Preloading " + humidityRepo.save(humidityMeasurement2));
       log.info("Preloading " + sensorsRepository.save(sensors2));*/
+
+            //Windows windows = new Windows(false,new Timestamp(System.currentTimeMillis()));
+            //log.info("Preloading " + windowsRepository.save(windows));
         };
     }
 }

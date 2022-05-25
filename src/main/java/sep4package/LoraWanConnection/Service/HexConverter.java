@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 public class HexConverter
 {
   private String data;
+  private Gson gson = new Gson();
 
   public HexConverter(String data)
   {
@@ -25,7 +26,6 @@ public class HexConverter
 
   public HexConverter()
   {
-
   }
 
   public Sensors convertFromHexToInt(UpLinkDataMessage data)
@@ -33,12 +33,12 @@ public class HexConverter
     int co2Level;
     int temperature;
     int humidity;
-    String co2String = new String();
-    String humString = new String();
-    String temString = new String();
-    String winString = new String();
-    String timeString = new String();
-    String allString = new String();
+    String co2String;
+    String humString;
+    String temString;
+    String winString;
+    String timeString;
+    String allString;
     boolean windowStatus = false;
     Timestamp timestamp;
 
@@ -57,6 +57,14 @@ public class HexConverter
     humString = "{\"humidity\":\"" + humidity + "\"}";
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",humString);
 
+    timestamp = new Timestamp(data.getTs());
+    TemperatureMeasurement temperatureM = new TemperatureMeasurement(temperature);
+    CO2Measurement co2M = new CO2Measurement(co2Level);
+    HumidityMeasurement humidityM = new HumidityMeasurement(humidity);
+    Sensors sensors = new Sensors(temperatureM,humidityM,co2M,timestamp);
+    String sensorString = gson.toJson(sensors);
+    System.out.println(sensorString);
+    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newSensors",sensorString);
 //    String hexValWin = data.getData().substring(12,16);
 //    if(hexValWin == "ff9c")
 //    {
@@ -66,7 +74,6 @@ public class HexConverter
 //    {
 //      windowStatus = true;
 //    }
-//    timestamp = new Timestamp(data.getTs());
 //    winString = "{\"windowOpen\":\"" + windowStatus + "\",";
 //    timeString = "\"timestamp\":\"" + timestamp + "\"}";
 //    allString = winString + temString;
