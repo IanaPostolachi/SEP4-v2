@@ -6,9 +6,9 @@ public class DownLinkDataMessage
   private final String EUI = "0004A30B00F398F2";
   private final int port = 2;
   private boolean confirmed;
-  private Integer data;
+  private String data;
 
-  public DownLinkDataMessage(Integer data) {
+  public DownLinkDataMessage(String data) {
     this.data = data;
   }
 
@@ -37,12 +37,12 @@ public class DownLinkDataMessage
     this.confirmed = confirmed;
   }
 
-  public Integer getData()
+  public String getData()
   {
     return data;
   }
 
-  public void setData(Integer data)
+  public void setData(String data)
   {
     this.data = data;
   }

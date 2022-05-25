@@ -1,13 +1,12 @@
 package sep4package.Model.Windows;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class WindowsController
@@ -20,9 +19,9 @@ public class WindowsController
     this.repository = repository;
   }
 
-  @GetMapping("/windows") List<Windows> all() {
+  @GetMapping("/windows/{id}") Optional<Windows> all(long id) {
 
-    return repository.findAll();
+    return repository.findById(id);
   }
 
   @PostMapping("/newWindow") Windows newWindow(@RequestBody Windows newWindow) {

@@ -10,12 +10,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
+import java.sql.SQLException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -100,6 +102,69 @@ public class WebSocketClient implements WebSocket.Listener
     System.out.println(indented + sensorsToDatabase.getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
+  }
+
+  private void sendCommand(String EUI) throws IOException, JSONException
+  {
+    String command;
+    String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows/1");
+    if (str.contains("false"))
+    {
+      command ="ff9c";
+    }
+    else
+    {
+      command = "0064";
+    }
+    DownLinkDataMessage msg = new DownLinkDataMessage(command);
+    System.out.println(gson.toJson(msg));
+    sendDownLink(gson.toJson(msg));
+  }
+
+  // 调用http接口获取数据
+  public static String getHttpInterface(String path)
+  {
+    BufferedReader in = null;
+    StringBuffer result = null;
+    try
+    {
+      URL url = new URL(path);
+      //打开和url之间的连接
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      connection.setRequestProperty("Content-Type",
+          "application/x-www-form-urlencoded");
+      connection.setRequestProperty("Charset", "utf-8");
+      connection.connect();
+
+      result = new StringBuffer();
+      //读取URL的响应
+      in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+      String line;
+      while ((line = in.readLine()) != null)
+      {
+        result.append(line);
+      }
+      return result.toString();
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    finally
+    {
+      try
+      {
+        if (in != null)
+        {
+          in.close();
+        }
+      }
+      catch (Exception e2)
+      {
+        e2.printStackTrace();
+      }
+    }
+    return null;
   }
 
 }
