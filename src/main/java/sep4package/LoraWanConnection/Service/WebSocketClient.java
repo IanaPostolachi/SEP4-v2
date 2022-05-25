@@ -1,25 +1,21 @@
 package sep4package.LoraWanConnection.Service;
 
 import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import sep4package.Model.DataAccess;
 import sep4package.Model.Sensors;
 import sep4package.Model.SensorsRepository;
-import sep4package.Model.SensorsService;
-import sep4package.Model.Windows.Windows;
-import sep4package.Model.Windows.WindowsRepository;
 
-import javax.persistence.EntityManager;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -28,13 +24,8 @@ public class WebSocketClient implements WebSocket.Listener
   private WebSocket server = null;
   private Gson gson = new Gson();
   HexConverter hexConverter = new HexConverter();
-  private Sensors sensorsToDatabase;
-private DataAccess dataAccess;
-
-  public Sensors getSensorsToDatabase()
-  {
-    return sensorsToDatabase;
-  }
+  private SensorsRepository sensorsRepository;
+  Sensors sensorsToDatabase;
 
 
   public WebSocket getServer()
@@ -53,11 +44,10 @@ private DataAccess dataAccess;
         .buildAsync(URI.create(url), this);
 
     server = ws.join();
-    dataAccess = DataAccess.dataAccess();
   }
-  public void onOpen(WebSocket webSocket) {
 
-    //onOpen()
+  //onOpen()
+  public void onOpen(WebSocket webSocket) {
     // This WebSocket will invoke onText, onBinary, onPing, onPong or onClose methods on the associated listener (i.e. receive methods) up to n more times
     webSocket.request(1);
     System.out.println("WebSocket Listener has been opened for requests.");
@@ -100,60 +90,16 @@ private DataAccess dataAccess;
     {
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
-      sensorsToDatabase = hexConverter.convertFromHexToInt(upLinkDataMessage);
-      if (dataAccess == null)
-      {
-        System.out.println(upLinkDataMessage.getData());
-      }
-      else
-      {
-        dataAccess.addSensors(sensorsToDatabase);
-      }
+      hexConverter.convertFromHexToInt(upLinkDataMessage);
+      //sensorsRepository.save(sensorsToDatabase);
     }
     catch (JSONException e)
     {
-//      e.printStackTrace();
-      System.out.println("Nooooooooooooooooooooooooo!");
-    }
-  /*  try
-    {
-      sendData();
-    }
-    catch (Exception e)
-    {
       e.printStackTrace();
-      System.out.println(e.getCause());
-    }*/
-  //  System.out.println(indented + sensorsToDatabase.getTemperature().getTemperature());
+    }
+    System.out.println(indented + sensorsToDatabase.getTemperature());
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
-/*
-  public void sendData()
-  {
-    String windowState;
 
-    try
-    {
-      //Getting the window from the Database with the JPA repository
-      Optional<Windows> windows = windowsRepository.findById(Long.parseLong("1"));
-      if (windows.get().isWindowOpen())
-      {
-        windowState = "0064";
-      }
-      else
-      {
-        windowState = "ff9c";
-      }
-
-      DownLinkDataMessage downLinkDataMessage = new DownLinkDataMessage(windowState);
-
-      System.out.println(gson.toJson(downLinkDataMessage));
-      sendDownLink(gson.toJson(downLinkDataMessage));
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-  }*/
 }
