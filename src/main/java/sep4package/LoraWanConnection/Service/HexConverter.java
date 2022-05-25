@@ -43,7 +43,7 @@ public class HexConverter
     boolean windowStatus = false;
     Timestamp timestamp;
 
-    System.out.println("Raw Data: " + data);
+//    System.out.println("Raw Data: " + data);
     String hexValCo2 = data.getData().substring(0, 4);
     co2Level = Integer.parseInt(hexValCo2, 16);
     co2String = "{\"co2Level\":\"" + co2Level + "\"}";
@@ -59,7 +59,7 @@ public class HexConverter
     humString = "{\"humidity\":\"" + humidity + "\"}";
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",humString);
 
-    timestamp = new Timestamp(data.getTs());
+//    timestamp = new Timestamp(data.getTs());
 //    TemperatureMeasurement temperatureM = new TemperatureMeasurement(1l,temperature);
 //    CO2Measurement co2M = new CO2Measurement(1l,co2Level);
 //    HumidityMeasurement humidityM = new HumidityMeasurement(1l,humidity);
