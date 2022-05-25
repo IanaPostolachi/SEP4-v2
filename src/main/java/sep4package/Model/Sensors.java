@@ -7,7 +7,9 @@ import sep4package.Model.Humidity.HumidityMeasurement;
 import sep4package.Model.Temperature.TemperatureMeasurement;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity(name = "Sensors")
 @Table(name = "sensors_data")
@@ -80,7 +82,7 @@ public class Sensors {
     }
 
     public Timestamp getTime() {
-        return Time;
+        return new Timestamp(System.currentTimeMillis());
     }
 
     public void setTime(Timestamp time) {

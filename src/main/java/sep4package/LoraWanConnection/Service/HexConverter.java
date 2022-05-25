@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class HexConverter
 {
@@ -42,6 +43,7 @@ public class HexConverter
     boolean windowStatus = false;
     Timestamp timestamp;
 
+    System.out.println("Raw Data: " + data);
     String hexValCo2 = data.getData().substring(0, 4);
     co2Level = Integer.parseInt(hexValCo2, 16);
     co2String = "{\"co2Level\":\"" + co2Level + "\"}";
@@ -58,13 +60,13 @@ public class HexConverter
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",humString);
 
     timestamp = new Timestamp(data.getTs());
-    TemperatureMeasurement temperatureM = new TemperatureMeasurement(temperature);
-    CO2Measurement co2M = new CO2Measurement(co2Level);
-    HumidityMeasurement humidityM = new HumidityMeasurement(humidity);
-    Sensors sensors = new Sensors(temperatureM,humidityM,co2M,timestamp);
-    String sensorString = gson.toJson(sensors);
-    System.out.println(sensorString);
-    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newSensors",sensorString);
+//    TemperatureMeasurement temperatureM = new TemperatureMeasurement(1l,temperature);
+//    CO2Measurement co2M = new CO2Measurement(1l,co2Level);
+//    HumidityMeasurement humidityM = new HumidityMeasurement(1l,humidity);
+//    Sensors sensors = new Sensors(temperatureM,humidityM,co2M,timestamp);
+//    String sensorString = gson.toJson(sensors);
+//    System.out.println(sensorString);
+//    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newSensors",sensorString);
 //    String hexValWin = data.getData().substring(12,16);
 //    if(hexValWin == "ff9c")
 //    {

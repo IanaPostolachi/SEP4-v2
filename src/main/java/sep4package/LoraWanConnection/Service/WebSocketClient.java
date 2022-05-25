@@ -112,7 +112,7 @@ public class WebSocketClient implements WebSocket.Listener
     {
       e.printStackTrace();
     }
-    System.out.println(indented + sensorsToDatabase.getTemperature());
+    //System.out.println(indented);
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
@@ -123,11 +123,11 @@ public class WebSocketClient implements WebSocket.Listener
     String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows");
     if (str.contains("false"))
     {
-      command ="ff9c";
+      command = "0";
     }
     else
     {
-      command = "0064";
+      command = "64";
     }
     DownLinkDataMessage msg = new DownLinkDataMessage(command);
     System.out.println(gson.toJson(msg));

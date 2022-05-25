@@ -36,6 +36,12 @@ public class HumidityMeasurement
         this.Humidity = Humidity;
     }
 
+    public HumidityMeasurement(Long HumidityId,double Humidity)
+    {
+        this.HumidityId = HumidityId;
+        this.Humidity = Humidity;
+    }
+
     public HumidityMeasurement() {
     }
 
