@@ -31,9 +31,9 @@ public class HexConverter
 
   public void convertFromHexToInt(UpLinkDataMessage data)
   {
-    int co2Level;
-    int temperature;
-    int humidity;
+    int co2Level = 0;
+    int temperature = 0;
+    int humidity = 0;
 
     String co2String = new String();
     String humString = new String();
@@ -46,7 +46,7 @@ public class HexConverter
 
 
     if(data.getData().length()>=12){
-      System.out.println(data.getData());
+      //System.out.println(data.getData());
       String hexValCo2 = data.getData().substring(0, 4);
       co2Level = Integer.parseInt(hexValCo2, 16);
       co2String = "{\"co2Level\":\"" + co2Level + "\"}";
@@ -78,16 +78,27 @@ public class HexConverter
 //    {
 //      windowStatus = true;
 //    }
-//    timestamp = new Timestamp(data.getTs()).toLocalDateTime();
+    timestamp = new Timestamp(data.getTs()).toLocalDateTime();
 //    winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
 //    System.out.println(winString);
 //    timeString = "{\"timestamp\":\"" + timestamp + "\",";
 //    allString = timeString + winString;
 //    System.out.println(allString);
 //    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
-
-
-    //Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement, co2Measurement,timestamp);
+    Gson gson = new Gson();
+    TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(temperature);
+    HumidityMeasurement humidityMeasurement = new HumidityMeasurement(humidity);
+    CO2Measurement co2Measurement = new CO2Measurement(co2Level);
+    Sensors sensors = new Sensors(temperatureMeasurement,humidityMeasurement,co2Measurement,timestamp);
+    //String sensorString = gson.toJson(sensors);
+    String sensorString = "{\"temperature\":" + "{" + "\"temperature\":" + temperature + "}," +
+        "\"humidity\":{" +
+        "\"humidity\":" + humidity + "}," +
+    "\"time\":\"" +  timestamp + "\"," +
+      "\"co2\": {" +
+        "\"co2Level\":" + co2Level + "}}";
+    System.out.println(sensorString);
+    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newSensors",sensorString);
   }
 
   public static void sendPost(String apiurl,String params){
