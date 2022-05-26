@@ -28,7 +28,7 @@ public class HexConverter
 
   }
 
-  public Sensors convertFromHexToInt(UpLinkDataMessage data)
+  public void convertFromHexToInt(UpLinkDataMessage data)
   {
     int co2Level;
     int temperature;
@@ -75,9 +75,6 @@ public class HexConverter
 
 
     //Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement, co2Measurement,timestamp);
-
-    //return sensors;
-    return null;
   }
 
   public static void sendPost(String apiurl,String params){
