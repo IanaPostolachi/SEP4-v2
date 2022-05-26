@@ -1,6 +1,7 @@
 package sep4package.Model;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sep4package.Model.Windows.Windows;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @RestController
 public class SensorsController
 {
-
+    //@Autowired
     private final SensorsRepository repository;
 
     public SensorsController(SensorsRepository repository)
@@ -27,7 +28,7 @@ public class SensorsController
         return repository.findById(id).orElseThrow(() -> new SensorsNotFoundException(id));
     }
 
-    @PutMapping("/newSensors") Sensors newSensor(@RequestBody Sensors newSensor)
+    @PostMapping("/newSensors") Sensors newSensor(@RequestBody Sensors newSensor)
     {
         return repository.save(newSensor);
     }
