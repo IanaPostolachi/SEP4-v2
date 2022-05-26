@@ -32,7 +32,7 @@ public class LoadDatabase {
             WindowsRepository windowsRepository) {
         return args -> {
 
-     TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(
+   /*  TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(
           22);
       HumidityMeasurement humidityMeasurement = new HumidityMeasurement(60);
       CO2Measurement co2Measurement = new CO2Measurement(400);
@@ -70,7 +70,7 @@ public class LoadDatabase {
       log.info("Preloading " + temperatureRepo.save(temperatureMeasurement2));
       log.info("Preloading " + co2Repo.save(co2Measurement2));
       log.info("Preloading " + humidityRepo.save(humidityMeasurement2));
-      log.info("Preloading " + sensorsRepository.save(sensors2));
+      log.info("Preloading " + sensorsRepository.save(sensors2));*/
 
             //Windows windows = new Windows(false,new Timestamp(System.currentTimeMillis()));
             //log.info("Preloading " + windowsRepository.save(windows));
