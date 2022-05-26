@@ -13,6 +13,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class HexConverter
 {
@@ -41,7 +42,7 @@ public class HexConverter
     String timeString = new String();
     String allString = new String();
     boolean windowStatus = false;
-    Timestamp timestamp;
+    LocalDateTime timestamp;
 
     String hexValCo2 = data.getData().substring(0, 4);
     co2Level = Integer.parseInt(hexValCo2, 16);
@@ -49,29 +50,31 @@ public class HexConverter
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/co2Sensor",co2String);
 
     String hexValTemp = data.getData().substring(4,8);
-    temperature = Integer.parseInt(hexValTemp, 16);
+    temperature = Integer.parseInt(hexValTemp, 16)/10;
     temString = "{\"temperature\":\""+ temperature + "\"}";
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/temperature",temString);
 
     String hexValHum = data.getData().substring(8,12);
-    humidity = Integer.parseInt(hexValHum, 16);
+    humidity = Integer.parseInt(hexValHum, 16)/10;
     humString = "{\"humidity\":\"" + humidity + "\"}";
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",humString);
 
-//    String hexValWin = data.getData().substring(12,16);
-//    if(hexValWin == "ff9c")
-//    {
-//      windowStatus = false;
-//    }
-//    else if(hexValWin == "0064")
-//    {
-//      windowStatus = true;
-//    }
-//    timestamp = new Timestamp(data.getTs());
-//    winString = "{\"windowOpen\":\"" + windowStatus + "\",";
-//    timeString = "\"timestamp\":\"" + timestamp + "\"}";
-//    allString = winString + temString;
-//    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
+    String hexValWin = data.getData().substring(12,16);
+    if(hexValWin == "0000")
+    {
+      windowStatus = false;
+    }
+    else if(hexValWin == "0064")
+    {
+      windowStatus = true;
+    }
+    timestamp = new Timestamp(data.getTs()).toLocalDateTime();
+    winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
+    System.out.println(winString);
+    timeString = "{\"timestamp\":\"" + timestamp + "\",";
+    allString = timeString + winString;
+    System.out.println(allString);
+    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
 
 
     //Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement, co2Measurement,timestamp);

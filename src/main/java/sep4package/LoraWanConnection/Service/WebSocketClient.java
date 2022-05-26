@@ -9,15 +9,12 @@ import sep4package.Model.SensorsRepository;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
-import java.sql.SQLException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -56,7 +53,8 @@ public class WebSocketClient implements WebSocket.Listener
   public void onError(WebSocket webSocket, Throwable error) {
     System.out.println("A " + error.getCause() + " exception was thrown.");
     System.out.println("Message: " + error.getLocalizedMessage());
-    webSocket.abort();
+    System.out.println(webSocket);
+    //webSocket.abort();
   }
 
   //onClose()
@@ -87,22 +85,19 @@ public class WebSocketClient implements WebSocket.Listener
     String indented = null;
     try
     {
-      indented = (new JSONObject(data.toString())).toString(4);
-      UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
-      hexConverter.convertFromHexToInt(upLinkDataMessage);
+      sendData();
     }
-    catch (JSONException e)
+    catch (IOException | JSONException e)
     {
       e.printStackTrace();
     }
 
     try
     {
-      sendCommand();
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
+      //Thread.sleep(5000);
+      indented = (new JSONObject(data.toString())).toString(4);
+      UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
+      hexConverter.convertFromHexToInt(upLinkDataMessage);
     }
     catch (JSONException e)
     {
@@ -113,19 +108,19 @@ public class WebSocketClient implements WebSocket.Listener
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
 
-  private void sendCommand() throws IOException, JSONException
+  private void sendData() throws IOException, JSONException
   {
-    String command;
+    String data;
     String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows");
     if (str.contains("false"))
     {
-      command = "0";
+      data = "00";
     }
     else
     {
-      command = "64";
+      data = "64";
     }
-    DownLinkDataMessage msg = new DownLinkDataMessage(command);
+    DownLinkDataMessage msg = new DownLinkDataMessage(data);
     System.out.println(gson.toJson(msg));
     sendDownLink(gson.toJson(msg));
   }
