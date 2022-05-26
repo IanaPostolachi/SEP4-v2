@@ -33,6 +33,7 @@ public class HexConverter
     int co2Level;
     int temperature;
     int humidity;
+
     String co2String = new String();
     String humString = new String();
     String temString = new String();
