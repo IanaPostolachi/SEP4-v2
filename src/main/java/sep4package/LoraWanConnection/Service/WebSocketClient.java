@@ -114,66 +114,9 @@ public class WebSocketClient implements WebSocket.Listener
 
   public void sendData() throws IOException, JSONException
   {
-    String data;
-    String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows");
-//    Queue queue = new LinkedList();
-    if (str.contains("false"))
-    {
-      data = "00";
-    }
-    else
-    {
-      data = "64";
-    }
-    DownLinkDataMessage msg = new DownLinkDataMessage(data);
+    DownLinkDataMessage msg = new DownLinkDataMessage(WindowStatus.getStatus());
     //System.out.println(gson.toJson(msg));
     sendDownLink(gson.toJson(msg));
-  }
-
-  // use URL get data
-  public static String getHttpInterface(String path)
-  {
-    BufferedReader in = null;
-    StringBuffer result = null;
-    try
-    {
-      URL url = new URL(path);
-      //open connection with URL
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestProperty("Content-Type",
-          "application/x-www-form-urlencoded");
-      connection.setRequestProperty("Charset", "utf-8");
-      connection.connect();
-
-      result = new StringBuffer();
-      //read URL response
-      in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-      String line;
-      while ((line = in.readLine()) != null)
-      {
-        result.append(line);
-      }
-      return result.toString();
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-    finally
-    {
-      try
-      {
-        if (in != null)
-        {
-          in.close();
-        }
-      }
-      catch (Exception e2)
-      {
-        e2.printStackTrace();
-      }
-    }
-    return null;
   }
 
 }
