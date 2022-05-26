@@ -13,8 +13,12 @@ public class WebapiSepApplication
 	public static void main(String[] args) throws IOException
 	{
 		SpringApplication.run(WebapiSepApplication.class, args);
-		WebSocketClient websocketClient = new WebSocketClient(
-				"wss://iotnet.teracom.dk/app?token=vnoUgwAAABFpb3RuZXQudGVyYWNvbS5ka-scwzPaa30T3gTw3hGn_3I=");
+		Thread thread = new Thread(() -> {
+			WebSocketClient websocketClient = new WebSocketClient(
+					"wss://iotnet.teracom.dk/app?token=vnoUgwAAABFpb3RuZXQudGVyYWNvbS5ka-scwzPaa30T3gTw3hGn_3I=");
+		});
+		thread.start();
+
 	}
 }
 

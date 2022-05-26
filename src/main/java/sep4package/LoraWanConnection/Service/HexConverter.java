@@ -44,37 +44,47 @@ public class HexConverter
     boolean windowStatus = false;
     LocalDateTime timestamp;
 
-    String hexValCo2 = data.getData().substring(0, 4);
-    co2Level = Integer.parseInt(hexValCo2, 16);
-    co2String = "{\"co2Level\":\"" + co2Level + "\"}";
-    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/co2Sensor",co2String);
 
-    String hexValTemp = data.getData().substring(4,8);
-    temperature = Integer.parseInt(hexValTemp, 16)/10;
-    temString = "{\"temperature\":\""+ temperature + "\"}";
-    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/temperature",temString);
+    if(data.getData().length()>=12){
+      System.out.println(data.getData());
+      String hexValCo2 = data.getData().substring(0, 4);
+      co2Level = Integer.parseInt(hexValCo2, 16);
+      co2String = "{\"co2Level\":\"" + co2Level + "\"}";
+      sendPost(
+          "http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/co2Sensor",
+          co2String);
 
-    String hexValHum = data.getData().substring(8,12);
-    humidity = Integer.parseInt(hexValHum, 16)/10;
-    humString = "{\"humidity\":\"" + humidity + "\"}";
-    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",humString);
+      String hexValTemp = data.getData().substring(4, 8);
+      temperature = Integer.parseInt(hexValTemp, 16) / 10;
+      temString = "{\"temperature\":\"" + temperature + "\"}";
+      sendPost(
+          "http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/temperature",
+          temString);
 
-    String hexValWin = data.getData().substring(12,16);
-    if(hexValWin == "0000")
-    {
-      windowStatus = false;
+      String hexValHum = data.getData().substring(8, 12);
+      humidity = Integer.parseInt(hexValHum, 16) / 10;
+      humString = "{\"humidity\":\"" + humidity + "\"}";
+      sendPost(
+          "http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",
+          humString);
     }
-    else if(hexValWin == "0064")
-    {
-      windowStatus = true;
-    }
-    timestamp = new Timestamp(data.getTs()).toLocalDateTime();
-    winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
-    System.out.println(winString);
-    timeString = "{\"timestamp\":\"" + timestamp + "\",";
-    allString = timeString + winString;
-    System.out.println(allString);
-    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
+
+//    String hexValWin = data.getData().substring(12,16);
+//    if(hexValWin == "0000")
+//    {
+//      windowStatus = false;
+//    }
+//    else if(hexValWin == "0064")
+//    {
+//      windowStatus = true;
+//    }
+//    timestamp = new Timestamp(data.getTs()).toLocalDateTime();
+//    winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
+//    System.out.println(winString);
+//    timeString = "{\"timestamp\":\"" + timestamp + "\",";
+//    allString = timeString + winString;
+//    System.out.println(allString);
+//    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
 
 
     //Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement, co2Measurement,timestamp);
@@ -93,7 +103,7 @@ public class HexConverter
       byte[] out = payload.getBytes(StandardCharsets.UTF_8);
       OutputStream stream = connection.getOutputStream();
       stream.write(out);
-      System.out.println(connection.getResponseCode() + " " + connection.getResponseMessage()); // THis is optional
+      System.out.println(connection.getResponseCode()); // This is optional
       connection.disconnect();
     }catch (Exception e){
       System.out.println(e);

@@ -1,11 +1,19 @@
 package sep4package.LoraWanConnection.Service;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class DownLinkDataMessage
 {
+  @JsonProperty
   private final String cmd = "tx";
+  @JsonProperty
   private final String EUI = "0004A30B00F398F2";
+  @JsonProperty
   private final int port = 2;
-  private boolean confirmed;
+  @JsonProperty
+  private boolean ack;
+  @JsonProperty
   private String data;
 
   public DownLinkDataMessage(String data) {
@@ -27,14 +35,14 @@ public class DownLinkDataMessage
     return port;
   }
 
-  public boolean isConfirmed()
+  public boolean isAck()
   {
-    return confirmed;
+    return ack;
   }
 
-  public void setConfirmed(boolean confirmed)
+  public void setAck(boolean ack)
   {
-    this.confirmed = confirmed;
+    this.ack = ack;
   }
 
   public String getData()

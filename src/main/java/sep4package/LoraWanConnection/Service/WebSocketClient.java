@@ -53,8 +53,8 @@ public class WebSocketClient implements WebSocket.Listener
   public void onError(WebSocket webSocket, Throwable error) {
     System.out.println("A " + error.getCause() + " exception was thrown.");
     System.out.println("Message: " + error.getLocalizedMessage());
-    System.out.println(webSocket);
-    //webSocket.abort();
+    //System.out.println(webSocket);
+    webSocket.abort();
   }
 
   //onClose()
@@ -85,30 +85,35 @@ public class WebSocketClient implements WebSocket.Listener
     String indented = null;
     try
     {
-      sendData();
+      indented = (new JSONObject(data.toString())).toString(4);
+      UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
+      hexConverter.convertFromHexToInt(upLinkDataMessage);
+      System.out.println(indented);
     }
-    catch (IOException | JSONException e)
+    catch (Exception e)
     {
       e.printStackTrace();
     }
 
     try
     {
-      //Thread.sleep(5000);
-      indented = (new JSONObject(data.toString())).toString(4);
-      UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
-      hexConverter.convertFromHexToInt(upLinkDataMessage);
+      sendData();
     }
-    catch (JSONException e)
+    catch (JSONException | IOException e)
     {
       e.printStackTrace();
     }
     //System.out.println(indented);
     webSocket.request(1);
+    try{
+      Thread.sleep(60000);
+    }catch (InterruptedException e){
+      System.out.println("Thread interrupted");
+    }
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
 
-  private void sendData() throws IOException, JSONException
+  public void sendData() throws IOException, JSONException
   {
     String data;
     String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows");
@@ -121,7 +126,7 @@ public class WebSocketClient implements WebSocket.Listener
       data = "64";
     }
     DownLinkDataMessage msg = new DownLinkDataMessage(data);
-    System.out.println(gson.toJson(msg));
+    //System.out.println(gson.toJson(msg));
     sendDownLink(gson.toJson(msg));
   }
 
