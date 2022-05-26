@@ -36,6 +36,12 @@ public class CO2Measurement
 
     }
 
+    public CO2Measurement(Long CO2Id,int CO2Level) {
+        this.CO2Id = CO2Id;
+        this.CO2Level = CO2Level;
+
+    }
+
     public CO2Measurement() {
     }
 

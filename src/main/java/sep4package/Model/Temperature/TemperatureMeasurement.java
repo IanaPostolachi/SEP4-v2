@@ -36,6 +36,12 @@ public class TemperatureMeasurement
   public TemperatureMeasurement() {
     }
 
+  public TemperatureMeasurement(Long TemperatureId,double Temperature) {
+    this.TemperatureId = TemperatureId;
+    this.Temperature = Temperature;
+
+  }
+
     public TemperatureMeasurement(double Temperature) {
         this.Temperature = Temperature;
 

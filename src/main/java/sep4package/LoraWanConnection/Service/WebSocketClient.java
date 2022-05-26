@@ -99,29 +99,42 @@ public class WebSocketClient implements WebSocket.Listener
     {
       e.printStackTrace();
     }
-    System.out.println(indented + sensorsToDatabase.getTemperature());
+
+    try
+    {
+      sendCommand();
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+    catch (JSONException e)
+    {
+      e.printStackTrace();
+    }
+    //System.out.println(indented);
     webSocket.request(1);
     return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
   }
 
-  private void sendCommand(String EUI) throws IOException, JSONException
+  private void sendCommand() throws IOException, JSONException
   {
     String command;
-    String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows/1");
+    String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows");
     if (str.contains("false"))
     {
-      command ="ff9c";
+      command = "0";
     }
     else
     {
-      command = "0064";
+      command = "64";
     }
     DownLinkDataMessage msg = new DownLinkDataMessage(command);
     System.out.println(gson.toJson(msg));
     sendDownLink(gson.toJson(msg));
   }
 
-  // 调用http接口获取数据
+  // use URL get data
   public static String getHttpInterface(String path)
   {
     BufferedReader in = null;
@@ -129,7 +142,7 @@ public class WebSocketClient implements WebSocket.Listener
     try
     {
       URL url = new URL(path);
-      //打开和url之间的连接
+      //open connection with URL
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setRequestProperty("Content-Type",
           "application/x-www-form-urlencoded");
@@ -137,7 +150,7 @@ public class WebSocketClient implements WebSocket.Listener
       connection.connect();
 
       result = new StringBuffer();
-      //读取URL的响应
+      //read URL response
       in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
       String line;
       while ((line = in.readLine()) != null)
