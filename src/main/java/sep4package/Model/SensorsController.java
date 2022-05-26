@@ -27,7 +27,7 @@ public class SensorsController
         return repository.findById(id).orElseThrow(() -> new SensorsNotFoundException(id));
     }
 
-    @PostMapping("/newSensors") Sensors newSensor(@RequestBody Sensors newSensor)
+    @PutMapping("/newSensors") Sensors newSensor(@RequestBody Sensors newSensor)
     {
         return repository.save(newSensor);
     }
