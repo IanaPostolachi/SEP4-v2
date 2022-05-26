@@ -26,9 +26,6 @@ public class WebSocketClient implements WebSocket.Listener
   private WebSocket server = null;
   private Gson gson = new Gson();
   HexConverter hexConverter = new HexConverter();
-  private SensorsRepository sensorsRepository;
-  Sensors sensorsToDatabase;
-
 
   public WebSocket getServer()
   {
@@ -93,7 +90,6 @@ public class WebSocketClient implements WebSocket.Listener
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
       hexConverter.convertFromHexToInt(upLinkDataMessage);
-      //sensorsRepository.save(sensorsToDatabase);
     }
     catch (JSONException e)
     {

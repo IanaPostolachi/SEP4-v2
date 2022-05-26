@@ -16,7 +16,7 @@ public class HumidityMeasurementController
         this.repository = repository;
     }
 
-    @GetMapping("/humiditySensors")
+    @GetMapping("/humidities")
     List<HumidityMeasurement> all() {
         return repository.findAll();
     }
