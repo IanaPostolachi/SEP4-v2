@@ -31,19 +31,20 @@ public class HexConverter {
         int temperature = 0;
         int humidity = 0;
 
-        String co2String = new String();
-        String humString = new String();
-        String temString = new String();
-        String winString = new String();
-        String timeString = new String();
-        String allString = new String();
+        String co2String;
+        String humString;
+        String temString;
+        String winString;
+        String timeString;
+        String timestampString;
+        String allString;
         boolean windowStatus = false;
         Timestamp timestamp;
 
 
         timestamp = new Timestamp(data.getTs());
-        timeString = "{\"timestamp\":\"" + timestamp + "\",";
-
+        timestampString = "{\"timestamp\":\"" + timestamp + "\",";
+        timeString ="{\"time\":\"" + timestamp + "\",";
         if (data.getData() != null) {
             if (data.getData().length() >= 12) {
                 //System.out.println(data.getData());
@@ -84,7 +85,7 @@ public class HexConverter {
     }
     winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
     System.out.println(winString);
-    allString = timeString + winString;
+    allString = timestampString + winString;
     System.out.println(allString);
     sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
     }
