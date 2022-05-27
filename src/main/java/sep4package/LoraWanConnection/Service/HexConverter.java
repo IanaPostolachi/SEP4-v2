@@ -39,7 +39,6 @@ public class HexConverter {
         timeString ="{\"time\":\"" + timestamp + "\",";
         if (data.getData() != null) {
             if (data.getData().length() >= 12) {
-                //System.out.println(data.getData());
                 String hexValCo2 = data.getData().substring(0, 4);
                 co2Level = Integer.parseInt(hexValCo2, 16);
                 co2String = "\"co2Level\":\"" + co2Level + "\"}";
@@ -89,11 +88,10 @@ public class HexConverter {
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept", "application/json");
-            // String payload = "{\"humidity\":\"29.9\"}";// This should be your json body i.e. {"Name" : "Mohsin"}
             byte[] out = payload.getBytes(StandardCharsets.UTF_8);
             OutputStream stream = connection.getOutputStream();
             stream.write(out);
-            System.out.println(connection.getResponseCode()); // This is optional
+            System.out.println(connection.getResponseCode());
             connection.disconnect();
         } catch (Exception e) {
             System.out.println(e);
