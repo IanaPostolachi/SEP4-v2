@@ -28,11 +28,15 @@ public class CO2Measurement
     @Column
     private int CO2Level;
 
+    @Column
+    private Timestamp Time;
+
     @OneToOne(mappedBy = "CO2")
     private Sensors sensors;
 
-    public CO2Measurement(int CO2Level) {
+    public CO2Measurement(int CO2Level,Timestamp timestamp) {
         this.CO2Level = CO2Level;
+        this.Time = timestamp;
 
     }
 
@@ -65,5 +69,14 @@ public class CO2Measurement
         this.CO2Level = CO2Level;
     }
 
+    public Timestamp getTime()
+    {
+        return Time;
+    }
+
+    public void setTime(Timestamp time)
+    {
+        Time = time;
+    }
 
 }

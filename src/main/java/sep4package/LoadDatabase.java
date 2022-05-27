@@ -32,29 +32,29 @@ public class LoadDatabase {
             WindowsRepository windowsRepository) {
         return args -> {
 
-   /*  TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(
+     TemperatureMeasurement temperatureMeasurement = new TemperatureMeasurement(
           22);
-      HumidityMeasurement humidityMeasurement = new HumidityMeasurement(60);
-      CO2Measurement co2Measurement = new CO2Measurement(400);
+      HumidityMeasurement humidityMeasurement = new HumidityMeasurement(60,new Timestamp(122, 11, 10, 11, 40, 25, 10));
+      CO2Measurement co2Measurement = new CO2Measurement(400,new Timestamp(122, 11, 10, 11, 40, 25, 10));
 
       TemperatureMeasurement temperatureMeasurement1 = new TemperatureMeasurement(
           18);
-      HumidityMeasurement humidityMeasurement1 = new HumidityMeasurement(19);
-      CO2Measurement co2Measurement1 = new CO2Measurement(221);
+      HumidityMeasurement humidityMeasurement1 = new HumidityMeasurement(19,new Timestamp(122, 11, 10, 11, 40, 25, 10));
+      CO2Measurement co2Measurement1 = new CO2Measurement(221,new Timestamp(122, 11, 10, 11, 40, 25, 10));
 
       TemperatureMeasurement temperatureMeasurement2 = new TemperatureMeasurement(
           18);
-      HumidityMeasurement humidityMeasurement2 = new HumidityMeasurement(19);
-      CO2Measurement co2Measurement2 = new CO2Measurement(221);
+      HumidityMeasurement humidityMeasurement2 = new HumidityMeasurement(19,new Timestamp(122, 11, 10, 11, 40, 25, 10));
+      CO2Measurement co2Measurement2 = new CO2Measurement(221,new Timestamp(122, 11, 10, 11, 40, 25, 10));
 
       Sensors sensors = new Sensors(temperatureMeasurement, humidityMeasurement,
-          co2Measurement, new Timestamp(2022, 12, 11, 12, 45, 30, 11));
+          co2Measurement, new Timestamp(122, 12, 11, 12, 45, 30, 11));
       Sensors sensors1 = new Sensors(temperatureMeasurement1,
           humidityMeasurement1, co2Measurement1,
-          new Timestamp(2002, 11, 10, 11, 40, 25, 10));
+          new Timestamp(122, 11, 10, 11, 40, 25, 10));
       Sensors sensors2 = new Sensors(temperatureMeasurement2,
           humidityMeasurement2, co2Measurement2,
-          new Timestamp(2021, 10, 9, 10, 35, 20, 9));
+          new Timestamp(122, 10, 9, 10, 35, 20, 9));
 
 
       log.info("Preloading " + co2Repo.save(co2Measurement));
@@ -70,7 +70,7 @@ public class LoadDatabase {
       log.info("Preloading " + temperatureRepo.save(temperatureMeasurement2));
       log.info("Preloading " + co2Repo.save(co2Measurement2));
       log.info("Preloading " + humidityRepo.save(humidityMeasurement2));
-      log.info("Preloading " + sensorsRepository.save(sensors2));*/
+      log.info("Preloading " + sensorsRepository.save(sensors2));
 
             //Windows windows = new Windows(false,new Timestamp(System.currentTimeMillis()));
             //log.info("Preloading " + windowsRepository.save(windows));

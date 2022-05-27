@@ -29,6 +29,9 @@ public class TemperatureMeasurement
     @Column
     private double Temperature;
 
+    @Column
+    private Timestamp Time;
+
     @OneToOne(mappedBy = "temperature")
     private Sensors sensors;
 
@@ -67,6 +70,15 @@ public class TemperatureMeasurement
         Temperature = temperature;
     }
 
+  public Timestamp getTime()
+  {
+    return Time;
+  }
+
+  public void setTime(Timestamp time)
+  {
+    Time = time;
+  }
 
 
 

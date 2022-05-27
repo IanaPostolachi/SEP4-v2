@@ -27,13 +27,17 @@ public class HumidityMeasurement
     @Column
     private double Humidity;
 
+    @Column
+    private Timestamp Time;
+
     @OneToOne(mappedBy = "humidity")
     private Sensors sensors;
 
 
-    public HumidityMeasurement(double Humidity)
+    public HumidityMeasurement(double Humidity,Timestamp timestamp)
     {
         this.Humidity = Humidity;
+        this.Time = timestamp;
     }
 
     public HumidityMeasurement(Long HumidityId,double Humidity)
@@ -63,6 +67,16 @@ public class HumidityMeasurement
     public void setHumidity(double humidity)
     {
         Humidity = humidity;
+    }
+
+    public Timestamp getTime()
+    {
+        return Time;
+    }
+
+    public void setTime(Timestamp time)
+    {
+        Time = time;
     }
 
 }

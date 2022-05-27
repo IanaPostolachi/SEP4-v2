@@ -49,9 +49,13 @@ public class Sensors {
     public Sensors() {
     }
 
-    public Sensors(TemperatureMeasurement temperatureMeasurement, HumidityMeasurement humidityMeasurement, CO2Measurement co2Measurement, LocalDateTime timestamp)
-    {
-    }
+//    public Sensors(TemperatureMeasurement temperatureMeasurement, HumidityMeasurement humidityMeasurement, CO2Measurement co2Measurement, LocalDateTime timestamp)
+//    {
+//        temperature = temperatureMeasurement;
+//        humidity = humidityMeasurement;
+//        CO2 = co2Measurement;
+//        Time = Timestamp.valueOf(timestamp);
+//    }
 
     public long getSensorId() {
         return SensorId;
