@@ -97,7 +97,7 @@ public class HexConverter {
             connection.disconnect();
         } catch (Exception e) {
             System.out.println(e);
-            System.out.println("Failed successfully");
+            System.out.println("Failed");
         }
     }
 

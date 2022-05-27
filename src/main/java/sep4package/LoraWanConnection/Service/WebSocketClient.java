@@ -3,19 +3,11 @@ package sep4package.LoraWanConnection.Service;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
-import sep4package.Model.SensorsRepository;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
 import java.nio.ByteBuffer;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
