@@ -106,7 +106,7 @@ public class WebSocketClient implements WebSocket.Listener
     //System.out.println(indented);
     webSocket.request(1);
     try{
-      Thread.sleep(60000);
+      Thread.sleep(300000);
     }catch (InterruptedException e){
       System.out.println("Thread interrupted");
     }
