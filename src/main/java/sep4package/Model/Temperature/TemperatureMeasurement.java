@@ -45,8 +45,9 @@ public class TemperatureMeasurement
 
   }
 
-    public TemperatureMeasurement(double Temperature) {
+    public TemperatureMeasurement(double Temperature,Timestamp timestamp) {
         this.Temperature = Temperature;
+        this.Time = timestamp;
 
     }
 
