@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class HexConverter {
     private String data;
@@ -30,10 +31,10 @@ public class HexConverter {
         String timestampString;
         String allString;
         boolean windowStatus = false;
-        Timestamp timestamp;
+        LocalDateTime timestamp;
 
 
-        timestamp = new Timestamp(data.getTs());
+        timestamp = new Timestamp(data.getTs()).toLocalDateTime();
         timestampString = "{\"timestamp\":\"" + timestamp + "\",";
         timeString ="{\"time\":\"" + timestamp + "\",";
         if (data.getData() != null) {
@@ -62,23 +63,22 @@ public class HexConverter {
                 sendPost(
                         "http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/humiditySensor",
                         humAllString);
+
+                String hexValWin = data.getData().substring(12,16);
+                if(hexValWin == "0000")
+                {
+                    windowStatus = false;
+                }
+                else if(hexValWin == "0064")
+                {
+                    windowStatus = true;
+                }
+                winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
+                allString = timestampString + winString;
+                System.out.println("The window status we recived and save to database: " + allString);
+                sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
             }
         }
-
-    String hexValWin = data.getData().substring(12,16);
-    if(hexValWin == "0000")
-    {
-      windowStatus = false;
-    }
-    else if(hexValWin == "0064")
-    {
-      windowStatus = true;
-    }
-    winString = "\"windowOpen\":\"" + windowStatus + "\"}";   //don't forget ,  and delete }
-    System.out.println(winString);
-    allString = timestampString + winString;
-    System.out.println(allString);
-    sendPost("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/newWindow",allString);
     }
 
     public static void sendPost(String apiurl, String payload) {
