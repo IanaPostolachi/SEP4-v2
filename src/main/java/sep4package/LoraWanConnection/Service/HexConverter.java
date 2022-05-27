@@ -1,22 +1,13 @@
 package sep4package.LoraWanConnection.Service;
 
-import com.google.gson.Gson;
-import sep4package.Model.CO2.CO2Measurement;
-import sep4package.Model.Humidity.HumidityMeasurement;
-import sep4package.Model.Sensors;
-import sep4package.Model.SensorsRepository;
-import sep4package.Model.Temperature.TemperatureMeasurement;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public class HexConverter {
     private String data;
-    private SensorsRepository sensorsRepository;
 
     public HexConverter(String data) {
         this.data = data;
