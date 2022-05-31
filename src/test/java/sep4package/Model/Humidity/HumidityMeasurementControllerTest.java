@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sep4package.Model.Windows.Windows;
 import sep4package.WebapiSepApplication;
 
 import java.sql.Timestamp;
@@ -18,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class HumidityMeasurementControllerTest
 {
     @Autowired
-    private HumiditySensorRepository repository;
+    private HumidityMeasurementRepository repository;
 
     @Test
     void all()

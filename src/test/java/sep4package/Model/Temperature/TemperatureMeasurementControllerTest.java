@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TemperatureMeasurementControllerTest
 {
     @Autowired
-    private TemperatureSensorRepository repository;
+    private TemperatureMeasurementRepository repository;
 
     @Test
     void all()
