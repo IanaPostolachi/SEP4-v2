@@ -1,23 +1,15 @@
 package sep4package;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import sep4package.Model.CO2.CO2Measurement;
-import sep4package.Model.Humidity.HumidityMeasurement;
-import sep4package.Model.Humidity.HumiditySensorRepository;
-import sep4package.Model.Sensors;
+import sep4package.Model.Humidity.HumidityMeasurementRepository;
 import sep4package.Model.SensorsRepository;
-import sep4package.Model.Temperature.TemperatureMeasurement;
-import sep4package.Model.Temperature.TemperatureSensorRepository;
-import sep4package.Model.CO2.CO2SensorRepository;
+import sep4package.Model.Temperature.TemperatureMeasurementRepository;
+import sep4package.Model.CO2.CO2MeasurementRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import sep4package.Model.Windows.Windows;
 import sep4package.Model.Windows.WindowsRepository;
-
-import java.sql.Timestamp;
 
 @Configuration
 public class LoadDatabase {
@@ -25,9 +17,9 @@ public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(
-            TemperatureSensorRepository temperatureRepo,
-            CO2SensorRepository co2Repo,
-            HumiditySensorRepository humidityRepo,
+            TemperatureMeasurementRepository temperatureRepo,
+            CO2MeasurementRepository co2Repo,
+            HumidityMeasurementRepository humidityRepo,
             SensorsRepository sensorsRepository,
             WindowsRepository windowsRepository) {
         return args -> {

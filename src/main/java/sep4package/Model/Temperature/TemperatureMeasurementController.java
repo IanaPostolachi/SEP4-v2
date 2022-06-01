@@ -9,9 +9,9 @@ import java.util.List;
 public class TemperatureMeasurementController
 {
     @Autowired
-    private final TemperatureSensorRepository repository;
+    private final TemperatureMeasurementRepository repository;
 
-    TemperatureMeasurementController(TemperatureSensorRepository repository) {
+    TemperatureMeasurementController(TemperatureMeasurementRepository repository) {
         this.repository = repository;
     }
 

@@ -82,6 +82,7 @@ public class WebSocketClient implements WebSocket.Listener
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
       hexConverter.convertFromHexToInt(upLinkDataMessage);
+      //Doesn't work
     }
     catch (Exception e)
     {
