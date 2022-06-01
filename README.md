@@ -8,3 +8,4 @@ Endpoint for humidity: http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk
 Endpoint for co2: http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/co2Sensors			   
 Endpoint for windows: http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows		   
 
+Based on Jakub Duchon's Cloud workshop
