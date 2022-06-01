@@ -9,10 +9,10 @@ import java.util.List;
 public class CO2MeasurementController
 {
     @Autowired
-    private final CO2SensorRepository repository;
+    private final CO2MeasurementRepository repository;
 
 
-    public CO2MeasurementController(CO2SensorRepository repository) {
+    public CO2MeasurementController(CO2MeasurementRepository repository) {
         this.repository = repository;
     }
 

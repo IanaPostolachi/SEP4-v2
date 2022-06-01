@@ -1,4 +1,4 @@
-package sep4package.LoraWanConnection.Service;
+package sep4package.Model.Windows;
 
 public class WindowStatus {
     private static String status;

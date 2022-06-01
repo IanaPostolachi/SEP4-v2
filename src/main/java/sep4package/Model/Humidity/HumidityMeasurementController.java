@@ -9,10 +9,10 @@ import java.util.List;
 public class HumidityMeasurementController
 {
     @Autowired
-    private final HumiditySensorRepository repository;
+    private final HumidityMeasurementRepository repository;
 
 
-    public HumidityMeasurementController(HumiditySensorRepository repository) {
+    public HumidityMeasurementController(HumidityMeasurementRepository repository) {
         this.repository = repository;
     }
 

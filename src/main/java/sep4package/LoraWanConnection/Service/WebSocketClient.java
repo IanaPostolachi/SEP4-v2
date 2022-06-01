@@ -3,6 +3,7 @@ package sep4package.LoraWanConnection.Service;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
+import sep4package.Model.Windows.WindowStatus;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -81,6 +82,7 @@ public class WebSocketClient implements WebSocket.Listener
       indented = (new JSONObject(data.toString())).toString(4);
       UpLinkDataMessage upLinkDataMessage = gson.fromJson(indented,UpLinkDataMessage.class);
       hexConverter.convertFromHexToInt(upLinkDataMessage);
+      //Doesn't work
     }
     catch (Exception e)
     {

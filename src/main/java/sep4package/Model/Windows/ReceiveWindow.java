@@ -1,7 +1,5 @@
 package sep4package.Model.Windows;
 
-import sep4package.LoraWanConnection.Service.WindowStatus;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -12,7 +10,6 @@ public class ReceiveWindow implements Runnable{
     public void run() {
         while (true) {
             try {
-
                 String str = getHttpInterface("http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/windows");
 
                 if (str.contains("false")) {
