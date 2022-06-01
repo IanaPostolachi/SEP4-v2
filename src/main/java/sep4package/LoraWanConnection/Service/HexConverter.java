@@ -79,7 +79,7 @@ public class HexConverter {
             }
         }
     }
-
+    //send POST request
     public static void sendPost(String apiurl, String payload) {
         try {
             URL url = new URL(apiurl);
