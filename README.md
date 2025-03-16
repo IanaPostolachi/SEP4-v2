@@ -1,6 +1,7 @@
 # SEP4-v2
 
-This is the data part with the database and web services for the sep4 project.
+This project aims to create a system that record data from a LoRaWAN station and save it in the dtabase. Afterwards exposing the data from the database in an API that sends it to an Android application on mobile devices. 
+The project has been created as a part of VIA university education programme for the second semester
 
 Endpoint for temperature: http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/temperatures    
 Endpoint for all sensors: http://sep4v2-env.eba-asbxjuyz.eu-west-1.elasticbeanstalk.com/sensors 		   
